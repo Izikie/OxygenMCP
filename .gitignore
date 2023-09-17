@@ -1,0 +1,17 @@
+.idea
+.gradle
+target
+build
+workspace/crash-reports
+workspace/assets/skins
+workspace/resourcepacks
+workspace/screenshots
+workspace/shaderpacks
+workspace/saves
+workspace/logs
+workspace/options.txt
+workspace/optionsof.txt
+workspace/optionsshaders.txt
+workspace/usercache.json
+workspace/server.properties
+workspace/servers.dat
