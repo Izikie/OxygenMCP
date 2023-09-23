@@ -53,7 +53,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.optifine.DynamicLights;
 import net.optifine.GlErrors;
-import net.optifine.VersionCheckThread;
 import net.optifine.config.GlVersion;
 import net.optifine.gui.GuiMessage;
 import net.optifine.reflect.Reflector;
@@ -72,7 +71,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL12;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.PixelFormat;
@@ -165,13 +163,11 @@ public class Config {
             if (Display.isCreated()) {
                 initialized = true;
                 checkOpenGlCaps();
-                startVersionCheckThread();
             }
         }
     }
 
     private static void checkOpenGlCaps() {
-        log("");
         log(getVersion());
         log("Build: " + getBuild());
         log("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.arch") + ") version " + System.getProperty("os.version"));
@@ -401,11 +397,6 @@ public class Config {
 
     public static boolean isMinecraftThread() {
         return Thread.currentThread() == minecraftThread;
-    }
-
-    private static void startVersionCheckThread() {
-        VersionCheckThread versioncheckthread = new VersionCheckThread();
-        versioncheckthread.start();
     }
 
     public static boolean isMipmaps() {
