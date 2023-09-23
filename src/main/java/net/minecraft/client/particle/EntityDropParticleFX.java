@@ -58,7 +58,7 @@ public class EntityDropParticleFX extends EntityFX {
             this.particleBlue = 4.0F / (float) (40 - this.bobTimer + 8);
         }
 
-        this.motionY -= (double) this.particleGravity;
+        this.motionY -= this.particleGravity;
 
         if (this.bobTimer-- > 0) {
             this.motionX *= 0.02D;
@@ -98,7 +98,7 @@ public class EntityDropParticleFX extends EntityFX {
             double d0 = 0.0D;
 
             if (iblockstate.getBlock() instanceof BlockLiquid) {
-                d0 = (double) BlockLiquid.getLiquidHeightPercent(((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue());
+                d0 = BlockLiquid.getLiquidHeightPercent(iblockstate.getValue(BlockLiquid.LEVEL).intValue());
             }
 
             double d1 = (double) (MathHelper.floor_double(this.posY) + 1) - d0;

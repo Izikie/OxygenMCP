@@ -48,7 +48,7 @@ public class ReflectorRaw {
                 }
             }
 
-            Field[] afield = (Field[]) ((Field[]) list.toArray(new Field[list.size()]));
+            Field[] afield = (Field[]) list.toArray(new Field[list.size()]);
             return afield;
         } catch (Exception var5) {
             return null;
@@ -65,7 +65,7 @@ public class ReflectorRaw {
                 return new Field[0];
             } else {
                 List<Field> list1 = list.subList(i + 1, list.size());
-                Field[] afield1 = (Field[]) ((Field[]) list1.toArray(new Field[list1.size()]));
+                Field[] afield1 = list1.toArray(new Field[list1.size()]);
                 return getFields(afield1, fieldType);
             }
         } catch (Exception var8) {
@@ -96,7 +96,7 @@ public class ReflectorRaw {
                 }
             }
 
-            Field[] afield = (Field[]) ((Field[]) list.toArray(new Field[list.size()]));
+            Field[] afield = list.toArray(new Field[list.size()]);
             return afield;
         } catch (Exception var9) {
             return null;

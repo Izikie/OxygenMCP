@@ -96,7 +96,7 @@ public class GuiScreenResourcePacks extends GuiScreen {
                         Runtime.getRuntime().exec(new String[]{"/usr/bin/open", s});
                         return;
                     } catch (IOException ioexception1) {
-                        logger.error((String) "Couldn\'t open file", (Throwable) ioexception1);
+                        logger.error("Couldn\'t open file", ioexception1);
                     }
                 } else if (Util.getOSType() == Util.EnumOS.WINDOWS) {
                     String s1 = String.format("cmd.exe /C start \"Open file\" \"%s\"", new Object[]{s});
@@ -105,7 +105,7 @@ public class GuiScreenResourcePacks extends GuiScreen {
                         Runtime.getRuntime().exec(s1);
                         return;
                     } catch (IOException ioexception) {
-                        logger.error((String) "Couldn\'t open file", (Throwable) ioexception);
+                        logger.error("Couldn\'t open file", ioexception);
                     }
                 }
 
@@ -113,7 +113,7 @@ public class GuiScreenResourcePacks extends GuiScreen {
 
                 try {
                     Class<?> oclass = Class.forName("java.awt.Desktop");
-                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object) null, new Object[0]);
+                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
                     oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new Object[]{file1.toURI()});
                 } catch (Throwable throwable) {
                     logger.error("Couldn\'t open link", throwable);

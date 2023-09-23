@@ -82,8 +82,8 @@ public class LightMap {
     }
 
     private void getLightMapColumn(float[][] origMap, float x, int offset, int width, float[][] colRgb) {
-        int i = (int) Math.floor((double) x);
-        int j = (int) Math.ceil((double) x);
+        int i = (int) Math.floor(x);
+        int j = (int) Math.ceil(x);
 
         if (i == j) {
             for (int i1 = 0; i1 < 16; ++i1) {

@@ -110,7 +110,7 @@ public class EffectRenderer {
     }
 
     public EntityFX spawnEffectParticle(int particleId, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters) {
-        IParticleFactory iparticlefactory = (IParticleFactory) this.particleTypes.get(Integer.valueOf(particleId));
+        IParticleFactory iparticlefactory = this.particleTypes.get(Integer.valueOf(particleId));
 
         if (iparticlefactory != null) {
             EntityFX entityfx = iparticlefactory.getEntityFX(particleId, this.worldObj, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
@@ -262,7 +262,7 @@ public class EffectRenderer {
                     worldrenderer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
 
                     for (int k = 0; k < this.fxLayers[i][j].size(); ++k) {
-                        final EntityFX entityfx = (EntityFX) this.fxLayers[i][j].get(k);
+                        final EntityFX entityfx = this.fxLayers[i][j].get(k);
 
                         try {
                             if (flag || !(entityfx instanceof EntitySuspendFX)) {
@@ -311,7 +311,7 @@ public class EffectRenderer {
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 
                 for (int j = 0; j < list.size(); ++j) {
-                    EntityFX entityfx = (EntityFX) list.get(j);
+                    EntityFX entityfx = list.get(j);
                     entityfx.renderParticle(worldrenderer, entityIn, partialTick, f1, f5, f2, f3, f4);
                 }
             }

@@ -54,9 +54,9 @@ public abstract class EntityHanging extends Entity {
             this.posX = d0;
             this.posY = d1;
             this.posZ = d2;
-            double d6 = (double) this.getWidthPixels();
-            double d7 = (double) this.getHeightPixels();
-            double d8 = (double) this.getWidthPixels();
+            double d6 = this.getWidthPixels();
+            double d7 = this.getHeightPixels();
+            double d8 = this.getWidthPixels();
 
             if (this.facingDirection.getAxis() == EnumFacing.Axis.Z) {
                 d8 = 1.0D;
@@ -85,7 +85,7 @@ public abstract class EntityHanging extends Entity {
 
             if (!this.isDead && !this.onValidSurface()) {
                 this.setDead();
-                this.onBroken((Entity) null);
+                this.onBroken(null);
             }
         }
     }
@@ -149,14 +149,14 @@ public abstract class EntityHanging extends Entity {
     public void moveEntity(double x, double y, double z) {
         if (!this.worldObj.isRemote && !this.isDead && x * x + y * y + z * z > 0.0D) {
             this.setDead();
-            this.onBroken((Entity) null);
+            this.onBroken(null);
         }
     }
 
     public void addVelocity(double x, double y, double z) {
         if (!this.worldObj.isRemote && !this.isDead && x * x + y * y + z * z > 0.0D) {
             this.setDead();
-            this.onBroken((Entity) null);
+            this.onBroken(null);
         }
     }
 

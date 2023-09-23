@@ -16,7 +16,7 @@ public class CustomUniforms {
         List<IExpressionCached> list = new ArrayList();
 
         for (String s : mapExpressions.keySet()) {
-            IExpression iexpression = (IExpression) mapExpressions.get(s);
+            IExpression iexpression = mapExpressions.get(s);
 
             if (iexpression instanceof IExpressionCached) {
                 IExpressionCached iexpressioncached = (IExpressionCached) iexpression;
@@ -24,7 +24,7 @@ public class CustomUniforms {
             }
         }
 
-        this.expressionsCached = (IExpressionCached[]) ((IExpressionCached[]) list.toArray(new IExpressionCached[list.size()]));
+        this.expressionsCached = list.toArray(new IExpressionCached[list.size()]);
     }
 
     public void setProgram(int program) {

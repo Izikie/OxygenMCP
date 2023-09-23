@@ -61,7 +61,7 @@ public class ReflectorForge {
                     path = path.substring(1);
                 }
 
-                byte[] abyte = (byte[]) ((byte[]) Reflector.call(object, Reflector.OptiFineClassTransformer_getOptiFineResource, new Object[]{path}));
+                byte[] abyte = (byte[]) Reflector.call(object, Reflector.OptiFineClassTransformer_getOptiFineResource, new Object[]{path});
 
                 if (abyte == null) {
                     return null;
@@ -113,7 +113,7 @@ public class ReflectorForge {
                     }
                 }
 
-                String[] astring = (String[]) ((String[]) list1.toArray(new String[list1.size()]));
+                String[] astring = list1.toArray(new String[list1.size()]);
                 return astring;
             }
         }

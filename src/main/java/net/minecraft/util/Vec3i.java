@@ -68,7 +68,7 @@ public class Vec3i implements Comparable<Vec3i> {
     }
 
     public double distanceSq(Vec3i to) {
-        return this.distanceSq((double) to.getX(), (double) to.getY(), (double) to.getZ());
+        return this.distanceSq(to.getX(), to.getY(), to.getZ());
     }
 
     public String toString() {

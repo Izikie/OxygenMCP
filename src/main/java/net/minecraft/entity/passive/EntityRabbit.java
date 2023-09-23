@@ -388,7 +388,7 @@ public class EntityRabbit extends EntityAnimal {
         }
 
         protected double func_179512_a(EntityLivingBase attackTarget) {
-            return (double) (4.0F + attackTarget.width);
+            return 4.0F + attackTarget.width;
         }
     }
 
@@ -443,7 +443,7 @@ public class EntityRabbit extends EntityAnimal {
 
         public void updateTask() {
             super.updateTask();
-            this.rabbit.getLookHelper().setLookPosition((double) this.destinationBlock.getX() + 0.5D, (double) (this.destinationBlock.getY() + 1), (double) this.destinationBlock.getZ() + 0.5D, 10.0F, (float) this.rabbit.getVerticalFaceSpeed());
+            this.rabbit.getLookHelper().setLookPosition((double) this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 1, (double) this.destinationBlock.getZ() + 0.5D, 10.0F, (float) this.rabbit.getVerticalFaceSpeed());
 
             if (this.getIsAboveDestination()) {
                 World world = this.rabbit.worldObj;
@@ -451,7 +451,7 @@ public class EntityRabbit extends EntityAnimal {
                 IBlockState iblockstate = world.getBlockState(blockpos);
                 Block block = iblockstate.getBlock();
 
-                if (this.field_179499_e && block instanceof BlockCarrot && ((Integer) iblockstate.getValue(BlockCarrot.AGE)).intValue() == 7) {
+                if (this.field_179499_e && block instanceof BlockCarrot && iblockstate.getValue(BlockCarrot.AGE).intValue() == 7) {
                     world.setBlockState(blockpos, Blocks.air.getDefaultState(), 2);
                     world.destroyBlock(blockpos, true);
                     this.rabbit.createEatingParticles();
@@ -470,7 +470,7 @@ public class EntityRabbit extends EntityAnimal {
                 IBlockState iblockstate = worldIn.getBlockState(pos);
                 block = iblockstate.getBlock();
 
-                if (block instanceof BlockCarrot && ((Integer) iblockstate.getValue(BlockCarrot.AGE)).intValue() == 7 && this.field_179498_d && !this.field_179499_e) {
+                if (block instanceof BlockCarrot && iblockstate.getValue(BlockCarrot.AGE).intValue() == 7 && this.field_179498_d && !this.field_179499_e) {
                     this.field_179499_e = true;
                     return true;
                 }

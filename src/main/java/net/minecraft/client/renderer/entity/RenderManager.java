@@ -222,7 +222,7 @@ public class RenderManager {
     public <T extends Entity> Render<T> getEntityRenderObject(Entity entityIn) {
         if (entityIn instanceof AbstractClientPlayer) {
             String s = ((AbstractClientPlayer) entityIn).getSkinType();
-            RenderPlayer renderplayer = (RenderPlayer) this.skinMap.get(s);
+            RenderPlayer renderplayer = this.skinMap.get(s);
             return (Render<T>) (renderplayer != null ? renderplayer : this.playerRenderer);
         } else {
             return this.<T>getEntityClassRenderObject(entityIn.getClass());
@@ -240,13 +240,13 @@ public class RenderManager {
             IBlockState iblockstate = worldIn.getBlockState(new BlockPos(livingPlayerIn));
             Block block = iblockstate.getBlock();
 
-            if (Reflector.callBoolean(block, Reflector.ForgeBlock_isBed, new Object[]{iblockstate, worldIn, new BlockPos(livingPlayerIn), (EntityLivingBase) livingPlayerIn})) {
+            if (Reflector.callBoolean(block, Reflector.ForgeBlock_isBed, new Object[]{iblockstate, worldIn, new BlockPos(livingPlayerIn), livingPlayerIn})) {
                 EnumFacing enumfacing = (EnumFacing) Reflector.call(block, Reflector.ForgeBlock_getBedDirection, new Object[]{iblockstate, worldIn, new BlockPos(livingPlayerIn)});
                 int i = enumfacing.getHorizontalIndex();
                 this.playerViewY = (float) (i * 90 + 180);
                 this.playerViewX = 0.0F;
             } else if (block == Blocks.bed) {
-                int j = ((EnumFacing) iblockstate.getValue(BlockBed.FACING)).getHorizontalIndex();
+                int j = iblockstate.getValue(BlockBed.FACING).getHorizontalIndex();
                 this.playerViewY = (float) (j * 90 + 180);
                 this.playerViewX = 0.0F;
             }

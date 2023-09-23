@@ -26,7 +26,7 @@ public class WorldVertexBufferUploader {
             boolean flag1 = Reflector.ForgeVertexFormatElementEnumUseage_postDraw.exists();
 
             for (int j = 0; j < list.size(); ++j) {
-                VertexFormatElement vertexformatelement = (VertexFormatElement) list.get(j);
+                VertexFormatElement vertexformatelement = list.get(j);
                 VertexFormatElement.EnumUsage vertexformatelement$enumusage = vertexformatelement.getUsage();
 
                 if (flag) {
@@ -72,7 +72,7 @@ public class WorldVertexBufferUploader {
             int j1 = 0;
 
             for (int k1 = list.size(); j1 < k1; ++j1) {
-                VertexFormatElement vertexformatelement1 = (VertexFormatElement) list.get(j1);
+                VertexFormatElement vertexformatelement1 = list.get(j1);
                 VertexFormatElement.EnumUsage vertexformatelement$enumusage1 = vertexformatelement1.getUsage();
 
                 if (flag1) {

@@ -53,7 +53,7 @@ public abstract class BlockRailBase extends Block {
 
     public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
-        BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = iblockstate.getBlock() == this ? (BlockRailBase.EnumRailDirection) iblockstate.getValue(this.getShapeProperty()) : null;
+        BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = iblockstate.getBlock() == this ? iblockstate.getValue(this.getShapeProperty()) : null;
 
         if (blockrailbase$enumraildirection != null && blockrailbase$enumraildirection.isAscending()) {
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
@@ -82,7 +82,7 @@ public abstract class BlockRailBase extends Block {
 
     public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
         if (!worldIn.isRemote) {
-            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection) state.getValue(this.getShapeProperty());
+            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = state.getValue(this.getShapeProperty());
             boolean flag = false;
 
             if (!World.doesBlockHaveSolidTopSurface(worldIn, pos.down())) {
@@ -126,7 +126,7 @@ public abstract class BlockRailBase extends Block {
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         super.breakBlock(worldIn, pos, state);
 
-        if (((BlockRailBase.EnumRailDirection) state.getValue(this.getShapeProperty())).isAscending()) {
+        if (state.getValue(this.getShapeProperty()).isAscending()) {
             worldIn.notifyNeighborsOfStateChange(pos.up(), this);
         }
 
@@ -203,7 +203,7 @@ public abstract class BlockRailBase extends Block {
             this.pos = pos;
             this.state = state;
             this.block = (BlockRailBase) state.getBlock();
-            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection) state.getValue(BlockRailBase.this.getShapeProperty());
+            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = state.getValue(BlockRailBase.this.getShapeProperty());
             this.isPowered = this.block.isPowered;
             this.func_180360_a(blockrailbase$enumraildirection);
         }
@@ -265,7 +265,7 @@ public abstract class BlockRailBase extends Block {
 
         private void func_150651_b() {
             for (int i = 0; i < this.field_150657_g.size(); ++i) {
-                BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos) this.field_150657_g.get(i));
+                BlockRailBase.Rail blockrailbase$rail = this.findRailAt(this.field_150657_g.get(i));
 
                 if (blockrailbase$rail != null && blockrailbase$rail.func_150653_a(this)) {
                     this.field_150657_g.set(i, blockrailbase$rail.pos);
@@ -304,7 +304,7 @@ public abstract class BlockRailBase extends Block {
 
         private boolean func_180363_c(BlockPos p_180363_1_) {
             for (int i = 0; i < this.field_150657_g.size(); ++i) {
-                BlockPos blockpos = (BlockPos) this.field_150657_g.get(i);
+                BlockPos blockpos = this.field_150657_g.get(i);
 
                 if (blockpos.getX() == p_180363_1_.getX() && blockpos.getZ() == p_180363_1_.getZ()) {
                     return true;
@@ -521,7 +521,7 @@ public abstract class BlockRailBase extends Block {
                 this.world.setBlockState(this.pos, this.state, 3);
 
                 for (int i = 0; i < this.field_150657_g.size(); ++i) {
-                    BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos) this.field_150657_g.get(i));
+                    BlockRailBase.Rail blockrailbase$rail = this.findRailAt(this.field_150657_g.get(i));
 
                     if (blockrailbase$rail != null) {
                         blockrailbase$rail.func_150651_b();

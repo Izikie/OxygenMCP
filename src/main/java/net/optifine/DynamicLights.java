@@ -80,7 +80,7 @@ public class DynamicLights {
                     List<DynamicLight> list = mapDynamicLights.valueList();
 
                     for (int j = 0; j < list.size(); ++j) {
-                        DynamicLight dynamiclight = (DynamicLight) list.get(j);
+                        DynamicLight dynamiclight = list.get(j);
                         dynamiclight.update(renderGlobal);
                     }
                 }
@@ -198,7 +198,7 @@ public class DynamicLights {
     }
 
     public static int getCombinedLight(Entity entity, int combinedLight) {
-        double d0 = (double) getLightLevel(entity);
+        double d0 = getLightLevel(entity);
         combinedLight = getCombinedLight(d0, combinedLight);
         return combinedLight;
     }
@@ -225,7 +225,7 @@ public class DynamicLights {
             int i = list.size();
 
             for (int j = 0; j < i; ++j) {
-                DynamicLight dynamiclight = (DynamicLight) list.get(j);
+                DynamicLight dynamiclight = list.get(j);
                 int k = dynamiclight.getLastLightLevel();
 
                 if (k > 0) {
@@ -287,7 +287,7 @@ public class DynamicLights {
                     return Blocks.beacon.getLightValue() / 2;
                 } else {
                     if (!mapItemLightLevels.isEmpty()) {
-                        Integer integer = (Integer) mapItemLightLevels.get(item);
+                        Integer integer = mapItemLightLevels.get(item);
 
                         if (integer != null) {
                             return integer.intValue();
@@ -318,7 +318,7 @@ public class DynamicLights {
                 return 15;
             } else {
                 if (!mapEntityLightLevels.isEmpty()) {
-                    Integer integer = (Integer) mapEntityLightLevels.get(entity.getClass());
+                    Integer integer = mapEntityLightLevels.get(entity.getClass());
 
                     if (integer != null) {
                         return integer.intValue();
@@ -368,7 +368,7 @@ public class DynamicLights {
             List<DynamicLight> list = mapDynamicLights.valueList();
 
             for (int i = 0; i < list.size(); ++i) {
-                DynamicLight dynamiclight = (DynamicLight) list.get(i);
+                DynamicLight dynamiclight = list.get(i);
                 dynamiclight.updateLitChunks(renderGlobal);
             }
 

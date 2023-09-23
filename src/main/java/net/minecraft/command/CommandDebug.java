@@ -87,7 +87,7 @@ public class CommandDebug extends CommandBase {
         stringbuilder.append("\n\n");
         stringbuilder.append("Time span: ").append(timeSpan).append(" ms\n");
         stringbuilder.append("Tick span: ").append(tickSpan).append(" ticks\n");
-        stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[]{Float.valueOf((float) tickSpan / ((float) timeSpan / 1000.0F))})).append(" ticks per second. It should be ").append((int) 20).append(" ticks per second\n\n");
+        stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[]{Float.valueOf((float) tickSpan / ((float) timeSpan / 1000.0F))})).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
         stringbuilder.append("--- BEGIN PROFILE DUMP ---\n\n");
         this.func_147202_a(0, "root", stringbuilder);
         stringbuilder.append("--- END PROFILE DUMP ---\n\n");
@@ -99,7 +99,7 @@ public class CommandDebug extends CommandBase {
 
         if (list != null && list.size() >= 3) {
             for (int i = 1; i < list.size(); ++i) {
-                Profiler.Result profiler$result = (Profiler.Result) list.get(i);
+                Profiler.Result profiler$result = list.get(i);
                 stringBuilder.append(String.format("[%02d] ", new Object[]{Integer.valueOf(p_147202_1_)}));
 
                 for (int j = 0; j < p_147202_1_; ++j) {
@@ -112,7 +112,7 @@ public class CommandDebug extends CommandBase {
                     try {
                         this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.field_76331_c, stringBuilder);
                     } catch (Exception exception) {
-                        stringBuilder.append("[[ EXCEPTION ").append((Object) exception).append(" ]]");
+                        stringBuilder.append("[[ EXCEPTION ").append(exception).append(" ]]");
                     }
                 }
             }

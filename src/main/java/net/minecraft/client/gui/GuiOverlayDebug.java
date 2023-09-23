@@ -77,7 +77,7 @@ public class GuiOverlayDebug extends Gui {
         }
 
         for (int i = 0; i < list.size(); ++i) {
-            String s = (String) list.get(i);
+            String s = list.get(i);
 
             if (!Strings.isNullOrEmpty(s)) {
                 int j = this.fontRenderer.FONT_HEIGHT;
@@ -100,7 +100,7 @@ public class GuiOverlayDebug extends Gui {
         }
 
         for (int i = 0; i < list.size(); ++i) {
-            String s = (String) list.get(i);
+            String s = list.get(i);
 
             if (!Strings.isNullOrEmpty(s)) {
                 int j = this.fontRenderer.FONT_HEIGHT;
@@ -259,7 +259,7 @@ public class GuiOverlayDebug extends Gui {
                 list.add(String.valueOf(Block.blockRegistry.getNameForObject(iblockstate.getBlock())));
 
                 for (Entry<IProperty, Comparable> entry : iblockstate.getProperties().entrySet()) {
-                    String s1 = ((Comparable) entry.getValue()).toString();
+                    String s1 = entry.getValue().toString();
 
                     if (entry.getValue() == Boolean.TRUE) {
                         s1 = EnumChatFormatting.GREEN + s1;
@@ -267,7 +267,7 @@ public class GuiOverlayDebug extends Gui {
                         s1 = EnumChatFormatting.RED + s1;
                     }
 
-                    list.add(((IProperty) entry.getKey()).getName() + ": " + s1);
+                    list.add(entry.getKey().getName() + ": " + s1);
                 }
             }
 

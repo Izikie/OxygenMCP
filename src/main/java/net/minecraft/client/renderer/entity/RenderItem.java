@@ -122,7 +122,7 @@ public class RenderItem implements IResourceManagerReloadListener {
     }
 
     public void renderModel(IBakedModel model, int color) {
-        this.renderModel(model, color, (ItemStack) null);
+        this.renderModel(model, color, null);
     }
 
     private void renderModel(IBakedModel model, int color, ItemStack stack) {
@@ -145,7 +145,7 @@ public class RenderItem implements IResourceManagerReloadListener {
         tessellator.draw();
 
         if (flag1) {
-            worldrenderer.setBlockLayer((EnumWorldBlockLayer) null);
+            worldrenderer.setBlockLayer(null);
             GlStateManager.bindCurrentTexture();
         }
     }
@@ -270,7 +270,7 @@ public class RenderItem implements IResourceManagerReloadListener {
         int i = 0;
 
         for (int j = quads.size(); i < j; ++i) {
-            BakedQuad bakedquad = (BakedQuad) quads.get(i);
+            BakedQuad bakedquad = quads.get(i);
             int k = color;
 
             if (flag && bakedquad.hasTintIndex()) {
@@ -447,7 +447,7 @@ public class RenderItem implements IResourceManagerReloadListener {
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Item being rendered");
                 crashreportcategory.addCrashSectionCallable("Item Type", new Callable<String>() {
                     public String call() throws Exception {
-                        return String.valueOf((Object) stack.getItem());
+                        return String.valueOf(stack.getItem());
                     }
                 });
                 crashreportcategory.addCrashSectionCallable("Item Aux", new Callable<String>() {
@@ -457,7 +457,7 @@ public class RenderItem implements IResourceManagerReloadListener {
                 });
                 crashreportcategory.addCrashSectionCallable("Item NBT", new Callable<String>() {
                     public String call() throws Exception {
-                        return String.valueOf((Object) stack.getTagCompound());
+                        return String.valueOf(stack.getTagCompound());
                     }
                 });
                 crashreportcategory.addCrashSectionCallable("Item Foil", new Callable<String>() {
@@ -473,7 +473,7 @@ public class RenderItem implements IResourceManagerReloadListener {
     }
 
     public void renderItemOverlays(FontRenderer fr, ItemStack stack, int xPosition, int yPosition) {
-        this.renderItemOverlayIntoGUI(fr, stack, xPosition, yPosition, (String) null);
+        this.renderItemOverlayIntoGUI(fr, stack, xPosition, yPosition, null);
     }
 
     public void renderItemOverlayIntoGUI(FontRenderer fr, ItemStack stack, int xPosition, int yPosition, String text) {
@@ -539,10 +539,10 @@ public class RenderItem implements IResourceManagerReloadListener {
 
     private void draw(WorldRenderer renderer, int x, int y, int width, int height, int red, int green, int blue, int alpha) {
         renderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        renderer.pos((double) (x + 0), (double) (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + 0), (double) (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + width), (double) (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + width), (double) (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos(x + 0, y + 0, 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos(x + 0, y + height, 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos(x + width, y + height, 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos(x + width, y + 0, 0.0D).color(red, green, blue, alpha).endVertex();
         Tessellator.getInstance().draw();
     }
 

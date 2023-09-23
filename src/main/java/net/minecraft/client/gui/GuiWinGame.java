@@ -58,7 +58,7 @@ public class GuiWinGame extends GuiScreen {
 
     private void sendRespawnPacket() {
         this.mc.thePlayer.sendQueue.addToSendQueue(new C16PacketClientStatus(C16PacketClientStatus.EnumState.PERFORM_RESPAWN));
-        this.mc.displayGuiScreen((GuiScreen) null);
+        this.mc.displayGuiScreen(null);
     }
 
     public boolean doesGuiPauseGame() {
@@ -110,7 +110,7 @@ public class GuiWinGame extends GuiScreen {
                 inputstream.close();
                 this.field_146579_r = this.field_146582_i.size() * 12;
             } catch (Exception exception) {
-                logger.error((String) "Couldn\'t load credits", (Throwable) exception);
+                logger.error("Couldn\'t load credits", exception);
             }
         }
     }
@@ -138,10 +138,10 @@ public class GuiWinGame extends GuiScreen {
 
         f3 = f3 * f3;
         f3 = f3 * 96.0F / 255.0F;
-        worldrenderer.pos(0.0D, (double) this.height, (double) this.zLevel).tex(0.0D, (double) (f * f2)).color(f3, f3, f3, 1.0F).endVertex();
-        worldrenderer.pos((double) i, (double) this.height, (double) this.zLevel).tex((double) ((float) i * f2), (double) (f * f2)).color(f3, f3, f3, 1.0F).endVertex();
-        worldrenderer.pos((double) i, 0.0D, (double) this.zLevel).tex((double) ((float) i * f2), (double) (f1 * f2)).color(f3, f3, f3, 1.0F).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, (double) this.zLevel).tex(0.0D, (double) (f1 * f2)).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, this.height, this.zLevel).tex(0.0D, f * f2).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos(i, this.height, this.zLevel).tex((float) i * f2, f * f2).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos(i, 0.0D, this.zLevel).tex((float) i * f2, f1 * f2).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, 0.0D, this.zLevel).tex(0.0D, f1 * f2).color(f3, f3, f3, 1.0F).endVertex();
         tessellator.draw();
     }
 
@@ -171,7 +171,7 @@ public class GuiWinGame extends GuiScreen {
             }
 
             if ((float) l + f + 12.0F + 8.0F > 0.0F && (float) l + f < (float) this.height) {
-                String s = (String) this.field_146582_i.get(i1);
+                String s = this.field_146582_i.get(i1);
 
                 if (s.startsWith("[C]")) {
                     this.fontRendererObj.drawStringWithShadow(s.substring(3), (float) (j + (i - this.fontRendererObj.getStringWidth(s.substring(3))) / 2), (float) l, 16777215);
@@ -191,10 +191,10 @@ public class GuiWinGame extends GuiScreen {
         int j1 = this.width;
         int k1 = this.height;
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        worldrenderer.pos(0.0D, (double) k1, (double) this.zLevel).tex(0.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos((double) j1, (double) k1, (double) this.zLevel).tex(1.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos((double) j1, 0.0D, (double) this.zLevel).tex(1.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, (double) this.zLevel).tex(0.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, k1, this.zLevel).tex(0.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(j1, k1, this.zLevel).tex(1.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(j1, 0.0D, this.zLevel).tex(1.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, 0.0D, this.zLevel).tex(0.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
         tessellator.draw();
         GlStateManager.disableBlend();
         super.drawScreen(mouseX, mouseY, partialTicks);

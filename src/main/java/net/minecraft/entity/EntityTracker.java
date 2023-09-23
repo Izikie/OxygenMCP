@@ -152,12 +152,12 @@ public class EntityTracker {
             });
             entityIn.addEntityCrashInfo(crashreportcategory);
             CrashReportCategory crashreportcategory1 = crashreport.makeCategory("Entity That Is Already Tracked");
-            ((EntityTrackerEntry) this.trackedEntityHashTable.lookup(entityIn.getEntityId())).trackedEntity.addEntityCrashInfo(crashreportcategory1);
+            this.trackedEntityHashTable.lookup(entityIn.getEntityId()).trackedEntity.addEntityCrashInfo(crashreportcategory1);
 
             try {
                 throw new ReportedException(crashreport);
             } catch (ReportedException reportedexception) {
-                logger.error((String) "\"Silently\" catching entity tracking error.", (Throwable) reportedexception);
+                logger.error("\"Silently\" catching entity tracking error.", reportedexception);
             }
         }
     }
@@ -171,7 +171,7 @@ public class EntityTracker {
             }
         }
 
-        EntityTrackerEntry entitytrackerentry1 = (EntityTrackerEntry) this.trackedEntityHashTable.removeObject(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry1 = this.trackedEntityHashTable.removeObject(entityIn.getEntityId());
 
         if (entitytrackerentry1 != null) {
             this.trackedEntities.remove(entitytrackerentry1);
@@ -190,8 +190,8 @@ public class EntityTracker {
             }
         }
 
-        for (int i = 0; i < ((List) list).size(); ++i) {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP) list.get(i);
+        for (int i = 0; i < list.size(); ++i) {
+            EntityPlayerMP entityplayermp = list.get(i);
 
             for (EntityTrackerEntry entitytrackerentry1 : this.trackedEntities) {
                 if (entitytrackerentry1.trackedEntity != entityplayermp) {
@@ -212,7 +212,7 @@ public class EntityTracker {
     }
 
     public void sendToAllTrackingEntity(Entity entityIn, Packet p_151247_2_) {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry) this.trackedEntityHashTable.lookup(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry = this.trackedEntityHashTable.lookup(entityIn.getEntityId());
 
         if (entitytrackerentry != null) {
             entitytrackerentry.sendPacketToTrackedPlayers(p_151247_2_);
@@ -220,7 +220,7 @@ public class EntityTracker {
     }
 
     public void func_151248_b(Entity entityIn, Packet p_151248_2_) {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry) this.trackedEntityHashTable.lookup(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry = this.trackedEntityHashTable.lookup(entityIn.getEntityId());
 
         if (entitytrackerentry != null) {
             entitytrackerentry.func_151261_b(p_151248_2_);

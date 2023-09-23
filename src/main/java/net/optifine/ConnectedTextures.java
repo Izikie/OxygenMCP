@@ -46,9 +46,9 @@ import net.optifine.util.TileEntityUtils;
 public class ConnectedTextures {
     private static Map[] spriteQuadMaps = null;
     private static Map[] spriteQuadFullMaps = null;
-    private static Map[][] spriteQuadCompactMaps = (Map[][]) null;
-    private static ConnectedProperties[][] blockProperties = (ConnectedProperties[][]) null;
-    private static ConnectedProperties[][] tileProperties = (ConnectedProperties[][]) null;
+    private static Map[][] spriteQuadCompactMaps = null;
+    private static ConnectedProperties[][] blockProperties = null;
+    private static ConnectedProperties[][] tileProperties = null;
     private static boolean multipass = false;
     protected static final int UNKNOWN = -1;
     protected static final int Y_NEG_DOWN = 0;
@@ -134,21 +134,21 @@ public class ConnectedTextures {
             }
 
             iblockstate = iblockstate.getBlock().getActualState(iblockstate, blockAccess, blockpos);
-            double d0 = (double) quad.getMidX();
+            double d0 = quad.getMidX();
 
             if (d0 < 0.4D) {
-                if (((Boolean) iblockstate.getValue(BlockPane.WEST)).booleanValue()) {
+                if (iblockstate.getValue(BlockPane.WEST).booleanValue()) {
                     return true;
                 }
             } else if (d0 > 0.6D) {
-                if (((Boolean) iblockstate.getValue(BlockPane.EAST)).booleanValue()) {
+                if (iblockstate.getValue(BlockPane.EAST).booleanValue()) {
                     return true;
                 }
             } else {
                 double d1 = quad.getMidZ();
 
                 if (d1 < 0.4D) {
-                    if (((Boolean) iblockstate.getValue(BlockPane.NORTH)).booleanValue()) {
+                    if (iblockstate.getValue(BlockPane.NORTH).booleanValue()) {
                         return true;
                     }
                 } else {
@@ -156,7 +156,7 @@ public class ConnectedTextures {
                         return true;
                     }
 
-                    if (((Boolean) iblockstate.getValue(BlockPane.SOUTH)).booleanValue()) {
+                    if (iblockstate.getValue(BlockPane.SOUTH).booleanValue()) {
                         return true;
                     }
                 }
@@ -238,7 +238,7 @@ public class ConnectedTextures {
     }
 
     private static BakedQuad makeSpriteQuad(BakedQuad quad, TextureAtlasSprite sprite) {
-        int[] aint = (int[]) quad.getVertexData().clone();
+        int[] aint = quad.getVertexData().clone();
         TextureAtlasSprite textureatlassprite = quad.getSprite();
 
         for (int i = 0; i < 4; ++i) {
@@ -271,7 +271,7 @@ public class ConnectedTextures {
             List<BakedQuad> list = renderEnv.getListQuadsCtmMultipass(abakedquad);
 
             for (int i = 0; i < list.size(); ++i) {
-                BakedQuad bakedquad = (BakedQuad) list.get(i);
+                BakedQuad bakedquad = list.get(i);
                 BakedQuad bakedquad1 = bakedquad;
 
                 for (int j = 0; j < 3; ++j) {
@@ -288,7 +288,7 @@ public class ConnectedTextures {
             }
 
             for (int k = 0; k < abakedquad.length; ++k) {
-                abakedquad[k] = (BakedQuad) list.get(k);
+                abakedquad[k] = list.get(k);
             }
 
             return abakedquad;
@@ -1750,10 +1750,10 @@ public class ConnectedTextures {
     }
 
     public static void updateIcons(TextureMap textureMap) {
-        blockProperties = (ConnectedProperties[][]) null;
-        tileProperties = (ConnectedProperties[][]) null;
+        blockProperties = null;
+        tileProperties = null;
         spriteQuadMaps = null;
-        spriteQuadCompactMaps = (Map[][]) null;
+        spriteQuadCompactMaps = null;
 
         if (Config.isConnectedTextures()) {
             IResourcePack[] airesourcepack = Config.getResourcePacks();
@@ -1771,11 +1771,11 @@ public class ConnectedTextures {
             spriteQuadCompactMaps = new Map[textureMap.getCountRegisteredSprites() + 1][];
 
             if (blockProperties.length <= 0) {
-                blockProperties = (ConnectedProperties[][]) null;
+                blockProperties = null;
             }
 
             if (tileProperties.length <= 0) {
-                tileProperties = (ConnectedProperties[][]) null;
+                tileProperties = null;
             }
         }
     }
@@ -1785,7 +1785,7 @@ public class ConnectedTextures {
 
     public static void updateIcons(TextureMap textureMap, IResourcePack rp) {
         String[] astring = ResUtils.collectFiles(rp, "mcpatcher/ctm/", ".properties", getDefaultCtmPaths());
-        Arrays.sort((Object[]) astring);
+        Arrays.sort(astring);
         List list = makePropertyList(tileProperties);
         List list1 = makePropertyList(blockProperties);
 
@@ -1862,7 +1862,7 @@ public class ConnectedTextures {
             }
         }
 
-        ConnectedProperties[] aconnectedproperties1 = (ConnectedProperties[]) ((ConnectedProperties[]) list.toArray(new ConnectedProperties[list.size()]));
+        ConnectedProperties[] aconnectedproperties1 = (ConnectedProperties[]) list.toArray(new ConnectedProperties[list.size()]);
         Set set1 = new HashSet();
         Set set = new HashSet();
 
@@ -1889,7 +1889,7 @@ public class ConnectedTextures {
             List sublist = (List) list.get(i);
 
             if (sublist != null) {
-                ConnectedProperties[] aconnectedproperties1 = (ConnectedProperties[]) ((ConnectedProperties[]) sublist.toArray(new ConnectedProperties[sublist.size()]));
+                ConnectedProperties[] aconnectedproperties1 = (ConnectedProperties[]) sublist.toArray(new ConnectedProperties[sublist.size()]);
                 aconnectedproperties[i] = aconnectedproperties1;
             }
         }
@@ -1974,7 +1974,7 @@ public class ConnectedTextures {
             }
         }
 
-        String[] astring1 = (String[]) ((String[]) list.toArray(new String[list.size()]));
+        String[] astring1 = (String[]) list.toArray(new String[list.size()]);
         return astring1;
     }
 }

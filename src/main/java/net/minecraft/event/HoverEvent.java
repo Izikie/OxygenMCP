@@ -81,7 +81,7 @@ public class HoverEvent {
         }
 
         public static HoverEvent.Action getValueByCanonicalName(String canonicalNameIn) {
-            return (HoverEvent.Action) nameMapping.get(canonicalNameIn);
+            return nameMapping.get(canonicalNameIn);
         }
 
         static {

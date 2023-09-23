@@ -78,7 +78,7 @@ public class RenderChunk {
     private RenderChunk[] renderChunkNeighbours = new RenderChunk[EnumFacing.VALUES.length];
     private RenderChunk[] renderChunkNeighboursValid = new RenderChunk[EnumFacing.VALUES.length];
     private boolean renderChunkNeighboursUpated = false;
-    private RenderGlobal.ContainerLocalRenderInformation renderInfo = new RenderGlobal.ContainerLocalRenderInformation(this, (EnumFacing) null, 0);
+    private RenderGlobal.ContainerLocalRenderInformation renderInfo = new RenderGlobal.ContainerLocalRenderInformation(this, null, 0);
     public AabbFrame boundingBoxParent;
 
     public RenderChunk(World worldIn, RenderGlobal renderGlobalIn, BlockPos blockPosIn, int indexIn) {
@@ -248,7 +248,7 @@ public class RenderChunk {
                 }
 
                 if (flag1) {
-                    Reflector.callVoid(Reflector.ForgeHooksClient_setRenderLayer, new Object[]{(Object) null});
+                    Reflector.callVoid(Reflector.ForgeHooksClient_setRenderLayer, new Object[]{null});
                 }
             }
 
@@ -269,7 +269,7 @@ public class RenderChunk {
                         compiledchunk.setAnimatedSprites(enumworldblocklayer1, (BitSet) worldrenderer1.animatedSprites.clone());
                     }
                 } else {
-                    compiledchunk.setAnimatedSprites(enumworldblocklayer1, (BitSet) null);
+                    compiledchunk.setAnimatedSprites(enumworldblocklayer1, null);
                 }
             }
 
@@ -360,9 +360,9 @@ public class RenderChunk {
             int l = pos.getZ() >> i << i;
             j = this.regionX;
             l = this.regionZ;
-            worldRendererIn.setTranslation((double) (-j), (double) (-k), (double) (-l));
+            worldRendererIn.setTranslation(-j, -k, -l);
         } else {
-            worldRendererIn.setTranslation((double) (-pos.getX()), (double) (-pos.getY()), (double) (-pos.getZ()));
+            worldRendererIn.setTranslation(-pos.getX(), -pos.getY(), -pos.getZ());
         }
     }
 
@@ -630,7 +630,7 @@ public class RenderChunk {
 
             if (this.boundingBoxParent == null) {
                 int l1 = 1 << l;
-                this.boundingBoxParent = new AabbFrame((double) i1, (double) j1, (double) k1, (double) (i1 + l1), (double) (j1 + l1), (double) (k1 + l1));
+                this.boundingBoxParent = new AabbFrame(i1, j1, k1, i1 + l1, j1 + l1, k1 + l1);
             }
         }
 

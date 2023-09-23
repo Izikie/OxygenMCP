@@ -26,7 +26,7 @@ public class BlockRedstoneTorch extends BlockTorch {
             toggles.put(worldIn, Lists.<BlockRedstoneTorch.Toggle>newArrayList());
         }
 
-        List<BlockRedstoneTorch.Toggle> list = (List) toggles.get(worldIn);
+        List<BlockRedstoneTorch.Toggle> list = toggles.get(worldIn);
 
         if (turnOff) {
             list.add(new BlockRedstoneTorch.Toggle(pos, worldIn.getTotalWorldTime()));
@@ -35,7 +35,7 @@ public class BlockRedstoneTorch extends BlockTorch {
         int i = 0;
 
         for (int j = 0; j < list.size(); ++j) {
-            BlockRedstoneTorch.Toggle blockredstonetorch$toggle = (BlockRedstoneTorch.Toggle) list.get(j);
+            BlockRedstoneTorch.Toggle blockredstonetorch$toggle = list.get(j);
 
             if (blockredstonetorch$toggle.pos.equals(pos)) {
                 ++i;
@@ -52,7 +52,7 @@ public class BlockRedstoneTorch extends BlockTorch {
     protected BlockRedstoneTorch(boolean isOn) {
         this.isOn = isOn;
         this.setTickRandomly(true);
-        this.setCreativeTab((CreativeTabs) null);
+        this.setCreativeTab(null);
     }
 
     public int tickRate(World worldIn) {
@@ -80,7 +80,7 @@ public class BlockRedstoneTorch extends BlockTorch {
     }
 
     private boolean shouldBeOff(World worldIn, BlockPos pos, IBlockState state) {
-        EnumFacing enumfacing = ((EnumFacing) state.getValue(FACING)).getOpposite();
+        EnumFacing enumfacing = state.getValue(FACING).getOpposite();
         return worldIn.isSidePowered(pos.offset(enumfacing), enumfacing);
     }
 
@@ -89,9 +89,9 @@ public class BlockRedstoneTorch extends BlockTorch {
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         boolean flag = this.shouldBeOff(worldIn, pos, state);
-        List<BlockRedstoneTorch.Toggle> list = (List) toggles.get(worldIn);
+        List<BlockRedstoneTorch.Toggle> list = toggles.get(worldIn);
 
-        while (list != null && !list.isEmpty() && worldIn.getTotalWorldTime() - ((BlockRedstoneTorch.Toggle) list.get(0)).time > 60L) {
+        while (list != null && !list.isEmpty() && worldIn.getTotalWorldTime() - list.get(0).time > 60L) {
             list.remove(0);
         }
 
@@ -100,7 +100,7 @@ public class BlockRedstoneTorch extends BlockTorch {
                 worldIn.setBlockState(pos, Blocks.unlit_redstone_torch.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 
                 if (this.isBurnedOut(worldIn, pos, true)) {
-                    worldIn.playSoundEffect((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
+                    worldIn.playSoundEffect((float) pos.getX() + 0.5F, (float) pos.getY() + 0.5F, (float) pos.getZ() + 0.5F, "random.fizz", 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
                     for (int i = 0; i < 5; ++i) {
                         double d0 = (double) pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
@@ -142,7 +142,7 @@ public class BlockRedstoneTorch extends BlockTorch {
             double d0 = (double) pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
             double d1 = (double) pos.getY() + 0.7D + (rand.nextDouble() - 0.5D) * 0.2D;
             double d2 = (double) pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
-            EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
 
             if (enumfacing.getAxis().isHorizontal()) {
                 EnumFacing enumfacing1 = enumfacing.getOpposite();

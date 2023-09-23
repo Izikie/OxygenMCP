@@ -69,7 +69,7 @@ public class EnchantmentProtection extends Enchantment {
         int i = EnchantmentHelper.getMaxEnchantmentLevel(Enchantment.blastProtection.effectId, p_92092_0_.getInventory());
 
         if (i > 0) {
-            p_92092_1_ -= (double) MathHelper.floor_double(p_92092_1_ * (double) ((float) i * 0.15F));
+            p_92092_1_ -= MathHelper.floor_double(p_92092_1_ * (double) ((float) i * 0.15F));
         }
 
         return p_92092_1_;

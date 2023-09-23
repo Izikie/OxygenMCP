@@ -327,7 +327,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                     }
 
                     try {
-                        worldserver.saveAllChunks(true, (IProgressUpdate) null);
+                        worldserver.saveAllChunks(true, null);
                     } catch (MinecraftException minecraftexception) {
                         logger.warn(minecraftexception.getMessage());
                     }
@@ -419,7 +419,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                     this.serverIsRunning = true;
                 }
             } else {
-                this.finalTick((CrashReport) null);
+                this.finalTick(null);
             }
         } catch (Throwable throwable1) {
             logger.error("Encountered an unexpected exception", throwable1);
@@ -462,11 +462,11 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 BufferedImage bufferedimage = ImageIO.read(file1);
                 Validate.validState(bufferedimage.getWidth() == 64, "Must be 64 pixels wide", new Object[0]);
                 Validate.validState(bufferedimage.getHeight() == 64, "Must be 64 pixels high", new Object[0]);
-                ImageIO.write(bufferedimage, "PNG", (OutputStream) (new ByteBufOutputStream(bytebuf)));
+                ImageIO.write(bufferedimage, "PNG", new ByteBufOutputStream(bytebuf));
                 ByteBuf bytebuf1 = Base64.encode(bytebuf);
                 response.setFavicon("data:image/png;base64," + bytebuf1.toString(Charsets.UTF_8));
             } catch (Exception exception) {
-                logger.error((String) "Couldn\'t load server icon", (Throwable) exception);
+                logger.error("Couldn\'t load server icon", exception);
             } finally {
                 bytebuf.release();
             }
@@ -503,7 +503,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             int j = MathHelper.getRandomIntegerInRange(this.random, 0, this.getCurrentPlayerCount() - agameprofile.length);
 
             for (int k = 0; k < agameprofile.length; ++k) {
-                agameprofile[k] = ((EntityPlayerMP) this.serverConfigManager.getPlayerList().get(j + k)).getGameProfile();
+                agameprofile[k] = this.serverConfigManager.getPlayerList().get(j + k).getGameProfile();
             }
 
             Collections.shuffle(Arrays.asList(agameprofile));
@@ -593,7 +593,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.theProfiler.endStartSection("tickables");
 
         for (int k = 0; k < this.playersOnline.size(); ++k) {
-            ((ITickable) this.playersOnline.get(k)).update();
+            this.playersOnline.get(k).update();
         }
 
         this.theProfiler.endSection();

@@ -282,8 +282,8 @@ public class WorldRenderer {
 
     public WorldRenderer tex(double u, double v) {
         if (this.quadSprite != null && this.quadSprites != null) {
-            u = (double) this.quadSprite.toSingleU((float) u);
-            v = (double) this.quadSprite.toSingleV((float) v);
+            u = this.quadSprite.toSingleU((float) u);
+            v = this.quadSprite.toSingleV((float) v);
             this.quadSprites[this.vertexCount / 4] = this.quadSprite;
         }
 

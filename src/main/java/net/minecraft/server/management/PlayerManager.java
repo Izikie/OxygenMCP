@@ -58,10 +58,10 @@ public class PlayerManager {
 
         while (iterator.hasNext()) {
             Entry<EntityPlayerMP, Set<ChunkCoordIntPair>> entry = (Entry) iterator.next();
-            Set<ChunkCoordIntPair> set1 = (Set) entry.getValue();
+            Set<ChunkCoordIntPair> set1 = entry.getValue();
 
             if (!set1.isEmpty()) {
-                EntityPlayerMP entityplayermp = (EntityPlayerMP) entry.getKey();
+                EntityPlayerMP entityplayermp = entry.getKey();
 
                 if (entityplayermp.worldObj != this.theWorldServer) {
                     iterator.remove();
@@ -87,13 +87,13 @@ public class PlayerManager {
             this.previousTotalWorldTime = j;
 
             for (int k = 0; k < this.playerInstanceList.size(); ++k) {
-                PlayerManager.PlayerInstance playermanager$playerinstance1 = (PlayerManager.PlayerInstance) this.playerInstanceList.get(k);
+                PlayerManager.PlayerInstance playermanager$playerinstance1 = this.playerInstanceList.get(k);
                 playermanager$playerinstance1.onUpdate();
                 playermanager$playerinstance1.processChunk();
             }
         } else {
             for (int l = 0; l < this.playerInstancesToUpdate.size(); ++l) {
-                PlayerManager.PlayerInstance playermanager$playerinstance2 = (PlayerManager.PlayerInstance) this.playerInstancesToUpdate.get(l);
+                PlayerManager.PlayerInstance playermanager$playerinstance2 = this.playerInstancesToUpdate.get(l);
                 playermanager$playerinstance2.onUpdate();
             }
         }
@@ -116,7 +116,7 @@ public class PlayerManager {
 
     private PlayerManager.PlayerInstance getPlayerInstance(int chunkX, int chunkZ, boolean createIfAbsent) {
         long i = (long) chunkX + 2147483647L | (long) chunkZ + 2147483647L << 32;
-        PlayerManager.PlayerInstance playermanager$playerinstance = (PlayerManager.PlayerInstance) this.playerInstances.getValueByKey(i);
+        PlayerManager.PlayerInstance playermanager$playerinstance = this.playerInstances.getValueByKey(i);
 
         if (playermanager$playerinstance == null && createIfAbsent) {
             playermanager$playerinstance = new PlayerManager.PlayerInstance(chunkX, chunkZ);
@@ -342,7 +342,7 @@ public class PlayerManager {
         }
 
         double d0 = (double) f * 0.017453292519943295D;
-        double d1 = (double) p_getNearest_2_.rotationPitch;
+        double d1 = p_getNearest_2_.rotationPitch;
         double d2 = d1 * 0.017453292519943295D;
         ChunkPosComparator chunkposcomparator = new ChunkPosComparator(p_getNearest_2_.chunkCoordX, p_getNearest_2_.chunkCoordZ, d0, d2);
         Comparator<ChunkCoordIntPair> comparator = Collections.<ChunkCoordIntPair>reverseOrder(chunkposcomparator);
@@ -352,7 +352,7 @@ public class PlayerManager {
             if (priorityqueue.size() < p_getNearest_3_) {
                 priorityqueue.add(chunkcoordintpair);
             } else {
-                ChunkCoordIntPair chunkcoordintpair1 = (ChunkCoordIntPair) priorityqueue.peek();
+                ChunkCoordIntPair chunkcoordintpair1 = priorityqueue.peek();
 
                 if (chunkposcomparator.compare(chunkcoordintpair, chunkcoordintpair1) < 0) {
                     priorityqueue.remove();
@@ -365,7 +365,7 @@ public class PlayerManager {
     }
 
     private Set<ChunkCoordIntPair> getPendingEntriesSafe(EntityPlayerMP p_getPendingEntriesSafe_1_) {
-        Set<ChunkCoordIntPair> set = (Set) this.mapPlayerPendingEntries.get(p_getPendingEntriesSafe_1_);
+        Set<ChunkCoordIntPair> set = this.mapPlayerPendingEntries.get(p_getPendingEntriesSafe_1_);
 
         if (set != null) {
             return set;
@@ -464,7 +464,7 @@ public class PlayerManager {
 
         public void sendToAllPlayersWatchingChunk(Packet thePacket) {
             for (int i = 0; i < this.playersWatchingChunk.size(); ++i) {
-                EntityPlayerMP entityplayermp = (EntityPlayerMP) this.playersWatchingChunk.get(i);
+                EntityPlayerMP entityplayermp = this.playersWatchingChunk.get(i);
 
                 if (!entityplayermp.loadedChunks.contains(this.chunkCoords)) {
                     entityplayermp.playerNetServerHandler.sendPacket(thePacket);
@@ -508,7 +508,7 @@ public class PlayerManager {
                             List<TileEntity> list = PlayerManager.this.theWorldServer.getTileEntitiesIn(i, l, j, i + 16, l + 16, j + 16);
 
                             for (int i1 = 0; i1 < list.size(); ++i1) {
-                                this.sendTileToAllPlayersWatchingChunk((TileEntity) list.get(i1));
+                                this.sendTileToAllPlayersWatchingChunk(list.get(i1));
                             }
                         }
                     }

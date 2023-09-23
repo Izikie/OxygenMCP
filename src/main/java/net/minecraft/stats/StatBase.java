@@ -21,7 +21,7 @@ public class StatBase {
     private static NumberFormat numberFormat = NumberFormat.getIntegerInstance(Locale.US);
     public static IStatType simpleStatType = new IStatType() {
         public String format(int number) {
-            return StatBase.numberFormat.format((long) number);
+            return StatBase.numberFormat.format(number);
         }
     };
     private static DecimalFormat decimalFormat = new DecimalFormat("########0.00");
@@ -67,7 +67,7 @@ public class StatBase {
 
     public StatBase registerStat() {
         if (StatList.oneShotStats.containsKey(this.statId)) {
-            throw new RuntimeException("Duplicate stat id: \"" + ((StatBase) StatList.oneShotStats.get(this.statId)).statName + "\" and \"" + this.statName + "\" at id " + this.statId);
+            throw new RuntimeException("Duplicate stat id: \"" + StatList.oneShotStats.get(this.statId).statName + "\" and \"" + this.statName + "\" at id " + this.statId);
         } else {
             StatList.allStats.add(this);
             StatList.oneShotStats.put(this.statId, this);

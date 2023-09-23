@@ -152,13 +152,13 @@ public enum FunctionType {
                 return MathUtils.acos(evalFloat(args, 0));
 
             case TAN:
-                return (float) Math.tan((double) evalFloat(args, 0));
+                return (float) Math.tan(evalFloat(args, 0));
 
             case ATAN:
-                return (float) Math.atan((double) evalFloat(args, 0));
+                return (float) Math.atan(evalFloat(args, 0));
 
             case ATAN2:
-                return (float) MathHelper.atan2((double) evalFloat(args, 0), (double) evalFloat(args, 1));
+                return (float) MathHelper.atan2(evalFloat(args, 0), evalFloat(args, 1));
 
             case TORAD:
                 return MathUtils.toRad(evalFloat(args, 0));
@@ -179,7 +179,7 @@ public enum FunctionType {
                 return MathHelper.abs(evalFloat(args, 0));
 
             case EXP:
-                return (float) Math.exp((double) evalFloat(args, 0));
+                return (float) Math.exp(evalFloat(args, 0));
 
             case FLOOR:
                 return (float) MathHelper.floor_float(evalFloat(args, 0));
@@ -188,13 +188,13 @@ public enum FunctionType {
                 return (float) MathHelper.ceiling_float_int(evalFloat(args, 0));
 
             case FRAC:
-                return (float) MathHelper.func_181162_h((double) evalFloat(args, 0));
+                return (float) MathHelper.func_181162_h(evalFloat(args, 0));
 
             case LOG:
-                return (float) Math.log((double) evalFloat(args, 0));
+                return (float) Math.log(evalFloat(args, 0));
 
             case POW:
-                return (float) Math.pow((double) evalFloat(args, 0), (double) evalFloat(args, 1));
+                return (float) Math.pow(evalFloat(args, 0), evalFloat(args, 1));
 
             case RANDOM:
                 return (float) Math.random();

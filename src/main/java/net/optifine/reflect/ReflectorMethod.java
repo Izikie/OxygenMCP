@@ -14,7 +14,7 @@ public class ReflectorMethod implements IResolvable {
     private Method targetMethod;
 
     public ReflectorMethod(ReflectorClass reflectorClass, String targetMethodName) {
-        this(reflectorClass, targetMethodName, (Class[]) null);
+        this(reflectorClass, targetMethodName, null);
     }
 
     public ReflectorMethod(ReflectorClass reflectorClass, String targetMethodName, Class[] targetMethodParameterTypes) {
@@ -175,7 +175,7 @@ public class ReflectorMethod implements IResolvable {
             }
         }
 
-        Method[] amethod1 = (Method[]) ((Method[]) list.toArray(new Method[list.size()]));
+        Method[] amethod1 = (Method[]) list.toArray(new Method[list.size()]);
         return amethod1;
     }
 

@@ -199,7 +199,7 @@ public class WorldServer extends World implements IThreadListener {
 
     public BiomeGenBase.SpawnListEntry getSpawnListEntryForTypeAt(EnumCreatureType creatureType, BlockPos pos) {
         List<BiomeGenBase.SpawnListEntry> list = this.getChunkProvider().getPossibleCreatures(creatureType, pos);
-        return list != null && !list.isEmpty() ? (BiomeGenBase.SpawnListEntry) WeightedRandom.getRandomItem(this.rand, list) : null;
+        return list != null && !list.isEmpty() ? WeightedRandom.getRandomItem(this.rand, list) : null;
     }
 
     public boolean canCreatureTypeSpawnHere(EnumCreatureType creatureType, BiomeGenBase.SpawnListEntry spawnListEntry, BlockPos pos) {
@@ -309,7 +309,7 @@ public class WorldServer extends World implements IThreadListener {
                     BlockPos blockpos = this.adjustPosToNearbyEntity(new BlockPos(k + (i1 & 15), 0, l + (i1 >> 8 & 15)));
 
                     if (this.isRainingAt(blockpos)) {
-                        this.addWeatherEffect(new EntityLightningBolt(this, (double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ()));
+                        this.addWeatherEffect(new EntityLightningBolt(this, blockpos.getX(), blockpos.getY(), blockpos.getZ()));
                     }
                 }
 
@@ -372,7 +372,7 @@ public class WorldServer extends World implements IThreadListener {
                 return p_apply_1_ != null && p_apply_1_.isEntityAlive() && WorldServer.this.canSeeSky(p_apply_1_.getPosition());
             }
         });
-        return !list.isEmpty() ? ((EntityLivingBase) list.get(this.rand.nextInt(list.size()))).getPosition() : blockpos;
+        return !list.isEmpty() ? list.get(this.rand.nextInt(list.size())).getPosition() : blockpos;
     }
 
     public boolean isBlockTickPending(BlockPos pos, Block blockType) {
@@ -465,7 +465,7 @@ public class WorldServer extends World implements IThreadListener {
                 this.theProfiler.startSection("cleaning");
 
                 for (int j = 0; j < i; ++j) {
-                    NextTickListEntry nextticklistentry = (NextTickListEntry) this.pendingTickListEntriesTreeSet.first();
+                    NextTickListEntry nextticklistentry = this.pendingTickListEntriesTreeSet.first();
 
                     if (!p_72955_1_ && nextticklistentry.scheduledTime > this.worldInfo.getWorldTotalTime()) {
                         break;
@@ -481,7 +481,7 @@ public class WorldServer extends World implements IThreadListener {
                 Iterator<NextTickListEntry> iterator = this.pendingTickListEntriesThisTick.iterator();
 
                 while (iterator.hasNext()) {
-                    NextTickListEntry nextticklistentry1 = (NextTickListEntry) iterator.next();
+                    NextTickListEntry nextticklistentry1 = iterator.next();
                     iterator.remove();
                     int k = 0;
 
@@ -532,7 +532,7 @@ public class WorldServer extends World implements IThreadListener {
             }
 
             while (iterator.hasNext()) {
-                NextTickListEntry nextticklistentry = (NextTickListEntry) iterator.next();
+                NextTickListEntry nextticklistentry = iterator.next();
                 BlockPos blockpos = nextticklistentry.position;
 
                 if (blockpos.getX() >= structureBB.minX && blockpos.getX() < structureBB.maxX && blockpos.getZ() >= structureBB.minZ && blockpos.getZ() < structureBB.maxZ) {
@@ -583,7 +583,7 @@ public class WorldServer extends World implements IThreadListener {
         List<TileEntity> list = Lists.<TileEntity>newArrayList();
 
         for (int i = 0; i < this.loadedTileEntityList.size(); ++i) {
-            TileEntity tileentity = (TileEntity) this.loadedTileEntityList.get(i);
+            TileEntity tileentity = this.loadedTileEntityList.get(i);
             BlockPos blockpos = tileentity.getPos();
 
             if (blockpos.getX() >= minX && blockpos.getY() >= minY && blockpos.getZ() >= minZ && blockpos.getX() < maxX && blockpos.getY() < maxY && blockpos.getZ() < maxZ) {
@@ -792,7 +792,7 @@ public class WorldServer extends World implements IThreadListener {
 
         for (EntityPlayer entityplayer : this.playerEntities) {
             if (entityplayer.getDistanceSq(x, y, z) < 4096.0D) {
-                ((EntityPlayerMP) entityplayer).playerNetServerHandler.sendPacket(new S27PacketExplosion(x, y, z, strength, explosion.getAffectedBlockPositions(), (Vec3) explosion.getPlayerKnockbackMap().get(entityplayer)));
+                ((EntityPlayerMP) entityplayer).playerNetServerHandler.sendPacket(new S27PacketExplosion(x, y, z, strength, explosion.getAffectedBlockPositions(), explosion.getPlayerKnockbackMap().get(entityplayer)));
             }
         }
 
@@ -818,7 +818,7 @@ public class WorldServer extends World implements IThreadListener {
 
             for (BlockEventData blockeventdata : this.blockEventQueue[i]) {
                 if (this.fireBlockEvent(blockeventdata)) {
-                    this.mcServer.getConfigurationManager().sendToAllNear((double) blockeventdata.getPosition().getX(), (double) blockeventdata.getPosition().getY(), (double) blockeventdata.getPosition().getZ(), 64.0D, this.provider.getDimensionId(), new S24PacketBlockAction(blockeventdata.getPosition(), blockeventdata.getBlock(), blockeventdata.getEventID(), blockeventdata.getEventParameter()));
+                    this.mcServer.getConfigurationManager().sendToAllNear(blockeventdata.getPosition().getX(), blockeventdata.getPosition().getY(), blockeventdata.getPosition().getZ(), 64.0D, this.provider.getDimensionId(), new S24PacketBlockAction(blockeventdata.getPosition(), blockeventdata.getBlock(), blockeventdata.getEventID(), blockeventdata.getEventParameter()));
                 }
             }
 
@@ -898,7 +898,7 @@ public class WorldServer extends World implements IThreadListener {
     }
 
     public Entity getEntityFromUuid(UUID uuid) {
-        return (Entity) this.entitiesByUuid.get(uuid);
+        return this.entitiesByUuid.get(uuid);
     }
 
     public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule) {

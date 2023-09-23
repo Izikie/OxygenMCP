@@ -46,7 +46,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
             return p_apply_1_ instanceof EntityHorse && ((EntityHorse) p_apply_1_).isBreeding();
         }
     };
-    private static final IAttribute horseJumpStrength = (new RangedAttribute((IAttribute) null, "horse.jumpStrength", 0.7D, 0.0D, 2.0D)).setDescription("Jump Strength").setShouldWatch(true);
+    private static final IAttribute horseJumpStrength = (new RangedAttribute(null, "horse.jumpStrength", 0.7D, 0.0D, 2.0D)).setDescription("Jump Strength").setShouldWatch(true);
     private static final String[] horseArmorTextures = new String[]{null, "textures/entity/horse/armor/horse_armor_iron.png", "textures/entity/horse/armor/horse_armor_gold.png", "textures/entity/horse/armor/horse_armor_diamond.png"};
     private static final String[] HORSE_ARMOR_TEXTURES_ABBR = new String[]{"", "meo", "goo", "dio"};
     private static final int[] armorValues = new int[]{0, 5, 7, 11};
@@ -98,7 +98,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         this.dataWatcher.addObject(16, Integer.valueOf(0));
         this.dataWatcher.addObject(19, Byte.valueOf((byte) 0));
         this.dataWatcher.addObject(20, Integer.valueOf(0));
-        this.dataWatcher.addObject(21, String.valueOf((Object) ""));
+        this.dataWatcher.addObject(21, String.valueOf(""));
         this.dataWatcher.addObject(22, Integer.valueOf(0));
     }
 
@@ -717,7 +717,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
 
                 if (flag) {
                     if (!player.capabilities.isCreativeMode && --itemstack.stackSize == 0) {
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack) null);
+                        player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                     }
 
                     return true;
@@ -987,7 +987,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
                 this.motionY = this.getHorseJumpStrength() * (double) this.jumpPower;
 
                 if (this.isPotionActive(Potion.jump)) {
-                    this.motionY += (double) ((float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+                    this.motionY += (float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
                 }
 
                 this.setHorseJumping(true);
@@ -996,8 +996,8 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
                 if (forward > 0.0F) {
                     float f = MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F);
                     float f1 = MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F);
-                    this.motionX += (double) (-0.4F * f * this.jumpPower);
-                    this.motionZ += (double) (0.4F * f1 * this.jumpPower);
+                    this.motionX += -0.4F * f * this.jumpPower;
+                    this.motionZ += 0.4F * f1 * this.jumpPower;
                     this.playSound("mob.horse.jump", 0.4F, 1.0F);
                 }
 
@@ -1232,7 +1232,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         }
 
         if (i != 4 && i != 3) {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue((double) this.getModifiedMaxHealth());
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.getModifiedMaxHealth());
 
             if (i == 0) {
                 this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.getModifiedMovementSpeed());

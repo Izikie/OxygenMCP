@@ -66,7 +66,7 @@ public class WorldBorder {
         double d0 = this.getCenterX() - this.getDiameter() / 2.0D;
 
         if (d0 < (double) (-this.worldSize)) {
-            d0 = (double) (-this.worldSize);
+            d0 = -this.worldSize;
         }
 
         return d0;
@@ -76,7 +76,7 @@ public class WorldBorder {
         double d0 = this.getCenterZ() - this.getDiameter() / 2.0D;
 
         if (d0 < (double) (-this.worldSize)) {
-            d0 = (double) (-this.worldSize);
+            d0 = -this.worldSize;
         }
 
         return d0;
@@ -86,7 +86,7 @@ public class WorldBorder {
         double d0 = this.getCenterX() + this.getDiameter() / 2.0D;
 
         if (d0 > (double) this.worldSize) {
-            d0 = (double) this.worldSize;
+            d0 = this.worldSize;
         }
 
         return d0;
@@ -96,7 +96,7 @@ public class WorldBorder {
         double d0 = this.getCenterZ() + this.getDiameter() / 2.0D;
 
         if (d0 > (double) this.worldSize) {
-            d0 = (double) this.worldSize;
+            d0 = this.worldSize;
         }
 
         return d0;
@@ -121,7 +121,7 @@ public class WorldBorder {
 
     public double getDiameter() {
         if (this.getStatus() != EnumBorderStatus.STATIONARY) {
-            double d0 = (double) ((float) (System.currentTimeMillis() - this.startTime) / (float) (this.endTime - this.startTime));
+            double d0 = (float) (System.currentTimeMillis() - this.startTime) / (float) (this.endTime - this.startTime);
 
             if (d0 < 1.0D) {
                 return this.startDiameter + (this.endDiameter - this.startDiameter) * d0;

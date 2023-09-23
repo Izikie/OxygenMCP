@@ -135,7 +135,7 @@ public class GuiPlayerTabOverlay extends Gui {
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 
             if (k4 < list.size()) {
-                NetworkPlayerInfo networkplayerinfo1 = (NetworkPlayerInfo) list.get(k4);
+                NetworkPlayerInfo networkplayerinfo1 = list.get(k4);
                 String s1 = this.getPlayerName(networkplayerinfo1);
                 GameProfile gameprofile = networkplayerinfo1.getGameProfile();
 
@@ -222,10 +222,10 @@ public class GuiPlayerTabOverlay extends Gui {
             if (this.lastTimeOpened == p_175247_6_.func_178855_p()) {
                 if (i < p_175247_6_.func_178835_l()) {
                     p_175247_6_.func_178846_a(Minecraft.getSystemTime());
-                    p_175247_6_.func_178844_b((long) (this.guiIngame.getUpdateCounter() + 20));
+                    p_175247_6_.func_178844_b(this.guiIngame.getUpdateCounter() + 20);
                 } else if (i > p_175247_6_.func_178835_l()) {
                     p_175247_6_.func_178846_a(Minecraft.getSystemTime());
-                    p_175247_6_.func_178844_b((long) (this.guiIngame.getUpdateCounter() + 10));
+                    p_175247_6_.func_178844_b(this.guiIngame.getUpdateCounter() + 10);
                 }
             }
 

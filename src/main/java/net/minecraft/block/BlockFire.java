@@ -139,7 +139,7 @@ public class BlockFire extends Block {
             if (!flag && worldIn.isRaining() && this.canDie(worldIn, pos)) {
                 worldIn.setBlockToAir(pos);
             } else {
-                int i = ((Integer) state.getValue(AGE)).intValue();
+                int i = state.getValue(AGE).intValue();
 
                 if (i < 15) {
                     state = state.withProperty(AGE, Integer.valueOf(i + rand.nextInt(3) / 2));
@@ -224,12 +224,12 @@ public class BlockFire extends Block {
     }
 
     private int getFlammability(Block blockIn) {
-        Integer integer = (Integer) this.flammabilities.get(blockIn);
+        Integer integer = this.flammabilities.get(blockIn);
         return integer == null ? 0 : integer.intValue();
     }
 
     private int getEncouragement(Block blockIn) {
-        Integer integer = (Integer) this.encouragements.get(blockIn);
+        Integer integer = this.encouragements.get(blockIn);
         return integer == null ? 0 : integer.intValue();
     }
 
@@ -311,7 +311,7 @@ public class BlockFire extends Block {
 
     public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (rand.nextInt(24) == 0) {
-            worldIn.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+            worldIn.playSound((float) pos.getX() + 0.5F, (float) pos.getY() + 0.5F, (float) pos.getZ() + 0.5F, "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
         }
 
         if (!World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && !Blocks.fire.canCatchFire(worldIn, pos.down())) {
@@ -382,7 +382,7 @@ public class BlockFire extends Block {
     }
 
     public int getMetaFromState(IBlockState state) {
-        return ((Integer) state.getValue(AGE)).intValue();
+        return state.getValue(AGE).intValue();
     }
 
     protected BlockState createBlockState() {

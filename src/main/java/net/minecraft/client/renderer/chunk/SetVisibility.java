@@ -51,7 +51,7 @@ public class SetVisibility {
                     stringbuilder.append("  ");
                 } else {
                     boolean flag = this.isVisible(enumfacing2, enumfacing1);
-                    stringbuilder.append(' ').append((char) (flag ? 'Y' : 'n'));
+                    stringbuilder.append(' ').append(flag ? 'Y' : 'n');
                 }
             }
 
@@ -74,10 +74,10 @@ public class SetVisibility {
     }
 
     private void setBit(int p_setBit_1_) {
-        this.bits |= (long) (1 << p_setBit_1_);
+        this.bits |= 1 << p_setBit_1_;
     }
 
     private void clearBit(int p_clearBit_1_) {
-        this.bits &= (long) (~(1 << p_clearBit_1_));
+        this.bits &= ~(1 << p_clearBit_1_);
     }
 }

@@ -273,7 +273,7 @@ public class CustomSkyLayer {
 
                 if (this.speed != (float) Math.round(this.speed)) {
                     long i = (world.getWorldTime() + 18000L) / 24000L;
-                    double d0 = (double) (this.speed % 1.0F);
+                    double d0 = this.speed % 1.0F;
                     double d1 = (double) i * d0;
                     f4 = (float) (d1 % 1.0D);
                 }
@@ -404,7 +404,7 @@ public class CustomSkyLayer {
                 long i = world.getWorldTime();
                 long j;
 
-                for (j = i - (long) this.startFadeIn; j < 0L; j += (long) (24000 * this.daysLoop)) {
+                for (j = i - (long) this.startFadeIn; j < 0L; j += 24000 * this.daysLoop) {
                     ;
                 }
 
