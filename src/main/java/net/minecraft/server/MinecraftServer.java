@@ -91,7 +91,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private final NetworkSystem networkSystem;
     private final ServerStatusResponse statusResponse = new ServerStatusResponse();
     private final Random random = new Random();
-    private int serverPort = -1;
+    private final int serverPort = -1;
     public WorldServer[] worldServers;
     private ServerConfigurationManager serverConfigManager;
     private boolean serverRunning = true;

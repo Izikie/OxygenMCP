@@ -67,7 +67,7 @@ public abstract class World implements IBlockAccess {
     public final List<EntityPlayer> playerEntities = Lists.<EntityPlayer>newArrayList();
     public final List<Entity> weatherEffects = Lists.<Entity>newArrayList();
     protected final IntHashMap<Entity> entitiesById = new IntHashMap();
-    private long cloudColour = 16777215L;
+    private final long cloudColour = 16777215L;
     private int skylightSubtracted;
     protected int updateLCG = (new Random()).nextInt();
     protected final int DIST_HASH_MAGIC = 1013904223;

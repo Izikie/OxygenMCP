@@ -105,9 +105,9 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     private static final ResourceLocation locationSnowPng = new ResourceLocation("textures/environment/snow.png");
     public static boolean anaglyphEnable;
     public static int anaglyphField;
-    private Minecraft mc;
+    private final Minecraft mc;
     private final IResourceManager resourceManager;
-    private Random random = new Random();
+    private final Random random = new Random();
     private float farPlaneDistance;
     public ItemRenderer itemRenderer;
     private final MapItemRenderer theMapItemRenderer;
@@ -115,7 +115,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     private Entity pointedEntity;
     private MouseFilter mouseFilterXAxis = new MouseFilter();
     private MouseFilter mouseFilterYAxis = new MouseFilter();
-    private float thirdPersonDistance = 4.0F;
+    private final float thirdPersonDistance = 4.0F;
     private float thirdPersonDistanceTemp = 4.0F;
     private float smoothCamYaw;
     private float smoothCamPitch;
@@ -127,8 +127,8 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     private float bossColorModifier;
     private float bossColorModifierPrev;
     private boolean cloudFog;
-    private boolean renderHand = true;
-    private boolean drawBlockOutline = true;
+    private final boolean renderHand = true;
+    private final boolean drawBlockOutline = true;
     private long prevFrameTime = Minecraft.getSystemTime();
     private long renderEndNanoTime;
     private final DynamicTexture lightmapTexture;
@@ -138,17 +138,17 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     private float torchFlickerX;
     private float torchFlickerDX;
     private int rainSoundCounter;
-    private float[] rainXCoords = new float[1024];
-    private float[] rainYCoords = new float[1024];
-    private FloatBuffer fogColorBuffer = GLAllocation.createDirectFloatBuffer(16);
+    private final float[] rainXCoords = new float[1024];
+    private final float[] rainYCoords = new float[1024];
+    private final FloatBuffer fogColorBuffer = GLAllocation.createDirectFloatBuffer(16);
     public float fogColorRed;
     public float fogColorGreen;
     public float fogColorBlue;
     private float fogColor2;
     private float fogColor1;
-    private int debugViewDirection = 0;
-    private boolean debugView = false;
-    private double cameraZoom = 1.0D;
+    private final int debugViewDirection = 0;
+    private final boolean debugView = false;
+    private final double cameraZoom = 1.0D;
     private double cameraYaw;
     private double cameraPitch;
     private ShaderGroup theShaderGroup;
@@ -159,7 +159,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     public int frameCount;
     private boolean initialized = false;
     private World updatedWorld = null;
-    private boolean showDebugInfo = false;
+    private final boolean showDebugInfo = false;
     public boolean fogStandard = false;
     private float clipDistance = 128.0F;
     private long lastServerTime = 0L;
@@ -168,7 +168,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     private int serverWaitTimeCurrent = 0;
     private float avgServerTimeDiff = 0.0F;
     private float avgServerTickDiff = 0.0F;
-    private ShaderGroup[] fxaaShaders = new ShaderGroup[10];
+    private final ShaderGroup[] fxaaShaders = new ShaderGroup[10];
     private boolean loadVisibleChunks = false;
 
     public EntityRenderer(Minecraft mcIn, IResourceManager resourceManagerIn) {

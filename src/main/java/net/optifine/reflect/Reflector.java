@@ -103,7 +103,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Reflector {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static boolean logForge = logEntry("*** Reflector Forge ***");
+    private static final boolean logForge = logEntry("*** Reflector Forge ***");
     public static ReflectorClass BetterFoliageClient = new ReflectorClass("mods.betterfoliage.client.BetterFoliageClient");
     public static ReflectorClass BlamingTransformer = new ReflectorClass("net.minecraftforge.fml.common.asm.transformers.BlamingTransformer");
     public static ReflectorMethod BlamingTransformer_onCrash = new ReflectorMethod(BlamingTransformer, "onCrash");
@@ -297,7 +297,7 @@ public class Reflector {
     public static ReflectorClass SplashScreen = new ReflectorClass("net.minecraftforge.fml.client.SplashProgress");
     public static ReflectorClass WorldEvent_Load = new ReflectorClass("net.minecraftforge.event.world.WorldEvent$Load");
     public static ReflectorConstructor WorldEvent_Load_Constructor = new ReflectorConstructor(WorldEvent_Load, new Class[]{World.class});
-    private static boolean logVanilla = logEntry("*** Reflector Vanilla ***");
+    private static final boolean logVanilla = logEntry("*** Reflector Vanilla ***");
     public static ReflectorClass ChunkProviderClient = new ReflectorClass(ChunkProviderClient.class);
     public static ReflectorField ChunkProviderClient_chunkMapping = new ReflectorField(ChunkProviderClient, LongHashMap.class);
     public static ReflectorClass EntityVillager = new ReflectorClass(EntityVillager.class);

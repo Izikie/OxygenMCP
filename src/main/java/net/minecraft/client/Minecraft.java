@@ -193,13 +193,13 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private static Minecraft theMinecraft;
     public PlayerControllerMP playerController;
     private boolean fullscreen;
-    private boolean enableGLErrorChecking = true;
+    private final boolean enableGLErrorChecking = true;
     private boolean hasCrashed;
     private CrashReport crashReporter;
     public int displayWidth;
     public int displayHeight;
-    private Timer timer = new Timer(20.0F);
-    private PlayerUsageSnooper usageSnooper = new PlayerUsageSnooper("client", this, MinecraftServer.getCurrentTimeMillis());
+    private final Timer timer = new Timer(20.0F);
+    private final PlayerUsageSnooper usageSnooper = new PlayerUsageSnooper("client", this, MinecraftServer.getCurrentTimeMillis());
     public WorldClient theWorld;
     public RenderGlobal renderGlobal;
     private RenderManager renderManager;
@@ -217,8 +217,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     public LoadingScreenRenderer loadingScreen;
     public EntityRenderer entityRenderer;
     private int leftClickCounter;
-    private int tempDisplayWidth;
-    private int tempDisplayHeight;
+    private final int tempDisplayWidth;
+    private final int tempDisplayHeight;
     private IntegratedServer theIntegratedServer;
     public GuiAchievement guiAchievement;
     public GuiIngame ingameGUI;
@@ -259,7 +259,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private final MinecraftSessionService sessionService;
     private SkinManager skinManager;
     private final Queue<FutureTask<?>> scheduledTasks = Queues.<FutureTask<?>>newArrayDeque();
-    private long field_175615_aJ = 0L;
+    private final long field_175615_aJ = 0L;
     private final Thread mcThread = Thread.currentThread();
     private ModelManager modelManager;
     private BlockRendererDispatcher blockRenderDispatcher;
