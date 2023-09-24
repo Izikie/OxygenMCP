@@ -58,7 +58,7 @@ public abstract class EntityLivingBase extends Entity {
     private static final AttributeModifier sprintingSpeedBoostModifier = (new AttributeModifier(sprintingSpeedBoostModifierUUID, "Sprinting speed boost", 0.30000001192092896D, 2)).setSaved(false);
     private BaseAttributeMap attributeMap;
     private final CombatTracker _combatTracker = new CombatTracker(this);
-    private final Map<Integer, PotionEffect> activePotionsMap = Maps.<Integer, PotionEffect>newHashMap();
+    private final Map<Integer, PotionEffect> activePotionsMap = Maps.newHashMap();
     private final ItemStack[] previousEquipment = new ItemStack[5];
     public boolean isSwingInProgress;
     public int swingProgressInt;
@@ -1456,7 +1456,7 @@ public abstract class EntityLivingBase extends Entity {
     }
 
     protected void collideWithNearbyEntities() {
-        List<Entity> list = this.worldObj.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D), Predicates.<Entity>and(EntitySelectors.NOT_SPECTATING, new Predicate<Entity>() {
+        List<Entity> list = this.worldObj.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D), Predicates.and(EntitySelectors.NOT_SPECTATING, new Predicate<Entity>() {
             public boolean apply(Entity p_apply_1_) {
                 return p_apply_1_.canBePushed();
             }

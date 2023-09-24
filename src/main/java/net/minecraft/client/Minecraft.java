@@ -247,7 +247,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private long debugCrashKeyPressTime = -1L;
     private IReloadableResourceManager mcResourceManager;
     private final IMetadataSerializer metadataSerializer_ = new IMetadataSerializer();
-    private final List<IResourcePack> defaultResourcePacks = Lists.<IResourcePack>newArrayList();
+    private final List<IResourcePack> defaultResourcePacks = Lists.newArrayList();
     private final DefaultResourcePack mcDefaultResourcePack;
     private ResourcePackRepository mcResourcePackRepository;
     private LanguageManager mcLanguageManager;
@@ -258,7 +258,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     private ResourceLocation mojangLogo;
     private final MinecraftSessionService sessionService;
     private SkinManager skinManager;
-    private final Queue<FutureTask<?>> scheduledTasks = Queues.<FutureTask<?>>newArrayDeque();
+    private final Queue<FutureTask<?>> scheduledTasks = Queues.newArrayDeque();
     private final long field_175615_aJ = 0L;
     private final Thread mcThread = Thread.currentThread();
     private ModelManager modelManager;
@@ -612,7 +612,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             logger.info("Caught error stitching, removing all assigned resourcepacks", runtimeexception);
             list.clear();
             list.addAll(this.defaultResourcePacks);
-            this.mcResourcePackRepository.setRepositories(Collections.<ResourcePackRepository.Entry>emptyList());
+            this.mcResourcePackRepository.setRepositories(Collections.emptyList());
             this.mcResourceManager.reloadResources(list);
             this.gameSettings.resourcePacks.clear();
             this.gameSettings.incompatibleResourcePacks.clear();
@@ -640,7 +640,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     }
 
     private void updateDisplayMode() throws LWJGLException {
-        Set<DisplayMode> set = Sets.<DisplayMode>newHashSet();
+        Set<DisplayMode> set = Sets.newHashSet();
         Collections.addAll(set, Display.getAvailableDisplayModes());
         DisplayMode displaymode = Display.getDesktopDisplayMode();
 
@@ -2395,7 +2395,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         Validate.notNull(callableToSchedule);
 
         if (!this.isCallingFromMinecraftThread()) {
-            ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.<V>create(callableToSchedule);
+            ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.create(callableToSchedule);
 
             synchronized (this.scheduledTasks) {
                 this.scheduledTasks.add(listenablefuturetask);
@@ -2403,7 +2403,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             }
         } else {
             try {
-                return Futures.<V>immediateFuture(callableToSchedule.call());
+                return Futures.immediateFuture(callableToSchedule.call());
             } catch (Exception exception) {
                 return Futures.immediateFailedCheckedFuture(exception);
             }
@@ -2412,7 +2412,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
 
     public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule) {
         Validate.notNull(runnableToSchedule);
-        return this.<Object>addScheduledTask(Executors.callable(runnableToSchedule));
+        return this.addScheduledTask(Executors.callable(runnableToSchedule));
     }
 
     public boolean isCallingFromMinecraftThread() {
@@ -2444,7 +2444,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
     }
 
     public static Map<String, String> getSessionInfo() {
-        Map<String, String> map = Maps.<String, String>newHashMap();
+        Map<String, String> map = Maps.newHashMap();
         map.put("X-Minecraft-Username", getMinecraft().getSession().getUsername());
         map.put("X-Minecraft-UUID", getMinecraft().getSession().getPlayerID());
         map.put("X-Minecraft-Version", "1.8.9");

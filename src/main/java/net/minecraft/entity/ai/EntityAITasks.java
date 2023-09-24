@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 
 public class EntityAITasks {
     private static final Logger logger = LogManager.getLogger();
-    private final List<EntityAITasks.EntityAITaskEntry> taskEntries = Lists.<EntityAITasks.EntityAITaskEntry>newArrayList();
-    private final List<EntityAITasks.EntityAITaskEntry> executingTaskEntries = Lists.<EntityAITasks.EntityAITaskEntry>newArrayList();
+    private final List<EntityAITasks.EntityAITaskEntry> taskEntries = Lists.newArrayList();
+    private final List<EntityAITasks.EntityAITaskEntry> executingTaskEntries = Lists.newArrayList();
     private final Profiler theProfiler;
     private int tickCount;
     private final int tickRate = 3;

@@ -12,8 +12,8 @@ import net.minecraft.client.settings.GameSettings;
 public class GuiSnooper extends GuiScreen {
     private final GuiScreen field_146608_a;
     private final GameSettings game_settings_2;
-    private final java.util.List<String> field_146604_g = Lists.<String>newArrayList();
-    private final java.util.List<String> field_146609_h = Lists.<String>newArrayList();
+    private final java.util.List<String> field_146604_g = Lists.newArrayList();
+    private final java.util.List<String> field_146609_h = Lists.newArrayList();
     private String field_146610_i;
     private String[] field_146607_r;
     private GuiSnooper.List field_146606_s;
@@ -27,7 +27,7 @@ public class GuiSnooper extends GuiScreen {
     public void initGui() {
         this.field_146610_i = I18n.format("options.snooper.title", new Object[0]);
         String s = I18n.format("options.snooper.desc", new Object[0]);
-        java.util.List<String> list = Lists.<String>newArrayList();
+        java.util.List<String> list = Lists.newArrayList();
 
         for (String s1 : this.fontRendererObj.listFormattedStringToWidth(s, this.width - 30)) {
             list.add(s1);

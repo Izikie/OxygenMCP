@@ -887,7 +887,7 @@ public class ShaderPackParser {
         map.put("NOTEQUAL", new Integer(517));
         map.put("GEQUAL", new Integer(518));
         map.put("ALWAYS", new Integer(519));
-        return Collections.<String, Integer>unmodifiableMap(map);
+        return Collections.unmodifiableMap(map);
     }
 
     private static Map<String, Integer> makeMapBlendFactors() {
@@ -907,6 +907,6 @@ public class ShaderPackParser {
         map.put("CONSTANT_ALPHA", new Integer(32771));
         map.put("ONE_MINUS_CONSTANT_ALPHA", new Integer(32772));
         map.put("SRC_ALPHA_SATURATE", new Integer(776));
-        return Collections.<String, Integer>unmodifiableMap(map);
+        return Collections.unmodifiableMap(map);
     }
 }

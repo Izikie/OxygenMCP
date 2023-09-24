@@ -15,11 +15,11 @@ import org.apache.logging.log4j.Logger;
 
 public class Profiler {
     private static final Logger logger = LogManager.getLogger();
-    private final List<String> sectionList = Lists.<String>newArrayList();
-    private final List<Long> timestampList = Lists.<Long>newArrayList();
+    private final List<String> sectionList = Lists.newArrayList();
+    private final List<Long> timestampList = Lists.newArrayList();
     public boolean profilingEnabled;
     private String profilingSection = "";
-    private final Map<String, Long> profilingMap = Maps.<String, Long>newHashMap();
+    private final Map<String, Long> profilingMap = Maps.newHashMap();
     public boolean profilerGlobalEnabled = true;
     private boolean profilerLocalEnabled;
     private static final String SCHEDULED_EXECUTABLES = "scheduledExecutables";
@@ -110,7 +110,7 @@ public class Profiler {
         } else {
             long i = this.profilingMap.containsKey("root") ? this.profilingMap.get("root") : 0L;
             long j = this.profilingMap.containsKey(profilerName) ? this.profilingMap.get(profilerName) : -1L;
-            List<Profiler.Result> list = Lists.<Profiler.Result>newArrayList();
+            List<Profiler.Result> list = Lists.newArrayList();
 
             if (profilerName.length() > 0) {
                 profilerName = profilerName + ".";

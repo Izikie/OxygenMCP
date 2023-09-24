@@ -69,8 +69,8 @@ public abstract class ServerConfigurationManager {
     private static final Logger logger = LogManager.getLogger();
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     private final MinecraftServer mcServer;
-    private final List<EntityPlayerMP> playerEntityList = Lists.<EntityPlayerMP>newArrayList();
-    private final Map<UUID, EntityPlayerMP> uuidToPlayerMap = Maps.<UUID, EntityPlayerMP>newHashMap();
+    private final List<EntityPlayerMP> playerEntityList = Lists.newArrayList();
+    private final Map<UUID, EntityPlayerMP> uuidToPlayerMap = Maps.newHashMap();
     private final UserListBans bannedPlayers;
     private final BanList bannedIPs;
     private final UserListOps ops;
@@ -89,7 +89,7 @@ public abstract class ServerConfigurationManager {
         this.bannedIPs = new BanList(FILE_IPBANS);
         this.ops = new UserListOps(FILE_OPS);
         this.whiteListedPlayers = new UserListWhitelist(FILE_WHITELIST);
-        this.playerStatFiles = Maps.<UUID, StatisticsFile>newHashMap();
+        this.playerStatFiles = Maps.newHashMap();
         this.mcServer = server;
         this.bannedPlayers.setLanServer(false);
         this.bannedIPs.setLanServer(false);
@@ -164,7 +164,7 @@ public abstract class ServerConfigurationManager {
     }
 
     protected void sendScoreboard(ServerScoreboard scoreboardIn, EntityPlayerMP playerIn) {
-        Set<ScoreObjective> set = Sets.<ScoreObjective>newHashSet();
+        Set<ScoreObjective> set = Sets.newHashSet();
 
         for (ScorePlayerTeam scoreplayerteam : scoreboardIn.getTeams()) {
             playerIn.playerNetServerHandler.sendPacket(new S3EPacketTeams(scoreplayerteam, 0));
@@ -323,7 +323,7 @@ public abstract class ServerConfigurationManager {
 
     public EntityPlayerMP createPlayerForUser(GameProfile profile) {
         UUID uuid = EntityPlayer.getUUID(profile);
-        List<EntityPlayerMP> list = Lists.<EntityPlayerMP>newArrayList();
+        List<EntityPlayerMP> list = Lists.newArrayList();
 
         for (int i = 0; i < this.playerEntityList.size(); ++i) {
             EntityPlayerMP entityplayermp = this.playerEntityList.get(i);
@@ -697,7 +697,7 @@ public abstract class ServerConfigurationManager {
     }
 
     public List<EntityPlayerMP> getPlayersMatchingAddress(String address) {
-        List<EntityPlayerMP> list = Lists.<EntityPlayerMP>newArrayList();
+        List<EntityPlayerMP> list = Lists.newArrayList();
 
         for (EntityPlayerMP entityplayermp : this.playerEntityList) {
             if (entityplayermp.getPlayerIP().equals(address)) {

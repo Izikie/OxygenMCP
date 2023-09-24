@@ -31,7 +31,7 @@ public class Metadata {
 
     public void func_152808_a(String p_152808_1_, String p_152808_2_) {
         if (this.payload == null) {
-            this.payload = Maps.<String, String>newHashMap();
+            this.payload = Maps.newHashMap();
         }
 
         if (this.payload.size() > 50) {

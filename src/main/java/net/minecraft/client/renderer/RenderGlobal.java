@@ -129,9 +129,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private final TextureManager renderEngine;
     private final RenderManager renderManager;
     private WorldClient theWorld;
-    private Set<RenderChunk> chunksToUpdate = Sets.<RenderChunk>newLinkedHashSet();
-    private List<RenderGlobal.ContainerLocalRenderInformation> renderInfos = Lists.<RenderGlobal.ContainerLocalRenderInformation>newArrayListWithCapacity(69696);
-    private final Set<TileEntity> setTileEntities = Sets.<TileEntity>newHashSet();
+    private Set<RenderChunk> chunksToUpdate = Sets.newLinkedHashSet();
+    private List<RenderGlobal.ContainerLocalRenderInformation> renderInfos = Lists.newArrayListWithCapacity(69696);
+    private final Set<TileEntity> setTileEntities = Sets.newHashSet();
     private ViewFrustum viewFrustum;
     private int starGLCallList = -1;
     private int glSkyList = -1;
@@ -141,8 +141,8 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private VertexBuffer skyVBO;
     private VertexBuffer sky2VBO;
     private int cloudTickCounter;
-    public final Map<Integer, DestroyBlockProgress> damagedBlocks = Maps.<Integer, DestroyBlockProgress>newHashMap();
-    private final Map<BlockPos, ISound> mapSoundPositions = Maps.<BlockPos, ISound>newHashMap();
+    public final Map<Integer, DestroyBlockProgress> damagedBlocks = Maps.newHashMap();
+    private final Map<BlockPos, ISound> mapSoundPositions = Maps.newHashMap();
     private final TextureAtlasSprite[] destroyBlockIcons = new TextureAtlasSprite[10];
     private Framebuffer entityOutlineFramebuffer;
     private ShaderGroup entityOutlineShader;
@@ -1076,7 +1076,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             this.mc.mcProfiler.endStartSection("rebuildNear");
             this.renderDispatcher.clearChunkUpdates();
             Set<RenderChunk> set = this.chunksToUpdate;
-            this.chunksToUpdate = Sets.<RenderChunk>newLinkedHashSet();
+            this.chunksToUpdate = Sets.newLinkedHashSet();
             Lagometer.timerChunkUpdate.start();
 
             for (RenderGlobal.ContainerLocalRenderInformation renderglobal$containerlocalrenderinformation3 : this.renderInfos) {

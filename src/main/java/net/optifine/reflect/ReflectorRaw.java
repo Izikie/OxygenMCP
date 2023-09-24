@@ -58,7 +58,7 @@ public class ReflectorRaw {
     public static Field[] getFieldsAfter(Class cls, Field field, Class fieldType) {
         try {
             Field[] afield = cls.getDeclaredFields();
-            List<Field> list = Arrays.<Field>asList(afield);
+            List<Field> list = Arrays.asList(afield);
             int i = list.indexOf(field);
 
             if (i < 0) {

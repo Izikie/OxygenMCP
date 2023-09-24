@@ -85,7 +85,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private final ISaveFormat anvilConverterForAnvilFile;
     private final PlayerUsageSnooper usageSnooper = new PlayerUsageSnooper("server", this, getCurrentTimeMillis());
     private final File anvilFile;
-    private final List<ITickable> playersOnline = Lists.<ITickable>newArrayList();
+    private final List<ITickable> playersOnline = Lists.newArrayList();
     protected final ICommandManager commandManager;
     public final Profiler theProfiler = new Profiler();
     private final NetworkSystem networkSystem;
@@ -128,7 +128,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private long nanoTimeSinceStatusRefresh = 0L;
     private final GameProfileRepository profileRepo;
     private final PlayerProfileCache profileCache;
-    protected final Queue<FutureTask<?>> futureTaskQueue = Queues.<FutureTask<?>>newArrayDeque();
+    protected final Queue<FutureTask<?>> futureTaskQueue = Queues.newArrayDeque();
     private Thread serverThread;
     private long currentTime = getCurrentTimeMillis();
 
@@ -663,7 +663,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     }
 
     public List<String> getTabCompletions(ICommandSender sender, String input, BlockPos pos) {
-        List<String> list = Lists.<String>newArrayList();
+        List<String> list = Lists.newArrayList();
 
         if (input.startsWith("/")) {
             input = input.substring(1);
@@ -1070,7 +1070,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         Validate.notNull(callable);
 
         if (!this.isCallingFromMinecraftThread() && !this.isServerStopped()) {
-            ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.<V>create(callable);
+            ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.create(callable);
 
             synchronized (this.futureTaskQueue) {
                 this.futureTaskQueue.add(listenablefuturetask);
@@ -1078,7 +1078,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             }
         } else {
             try {
-                return Futures.<V>immediateFuture(callable.call());
+                return Futures.immediateFuture(callable.call());
             } catch (Exception exception) {
                 return Futures.immediateFailedCheckedFuture(exception);
             }
@@ -1087,7 +1087,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
 
     public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule) {
         Validate.notNull(runnableToSchedule);
-        return this.<Object>callFromMainThread(Executors.callable(runnableToSchedule));
+        return this.callFromMainThread(Executors.callable(runnableToSchedule));
     }
 
     public boolean isCallingFromMinecraftThread() {

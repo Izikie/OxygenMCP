@@ -52,8 +52,8 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
     protected RenderItem itemRender;
     public int width;
     public int height;
-    protected List<GuiButton> buttonList = Lists.<GuiButton>newArrayList();
-    protected List<GuiLabel> labelList = Lists.<GuiLabel>newArrayList();
+    protected List<GuiButton> buttonList = Lists.newArrayList();
+    protected List<GuiLabel> labelList = Lists.newArrayList();
     public boolean allowUserInput;
     protected FontRenderer fontRendererObj;
     private GuiButton selectedButton;
@@ -122,7 +122,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
     }
 
     protected void drawCreativeTabHoveringText(String tabName, int mouseX, int mouseY) {
-        this.drawHoveringText(Arrays.<String>asList(new String[]{tabName}), mouseX, mouseY);
+        this.drawHoveringText(Arrays.asList(new String[]{tabName}), mouseX, mouseY);
     }
 
     protected void drawHoveringText(List<String> textLines, int x, int y) {
@@ -220,7 +220,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                         NBTBase nbtbase1 = JsonToNBT.getTagFromJson(hoverevent.getValue().getUnformattedText());
 
                         if (nbtbase1 instanceof NBTTagCompound) {
-                            List<String> list1 = Lists.<String>newArrayList();
+                            List<String> list1 = Lists.newArrayList();
                             NBTTagCompound nbttagcompound = (NBTTagCompound) nbtbase1;
                             list1.add(nbttagcompound.getString("name"));
 

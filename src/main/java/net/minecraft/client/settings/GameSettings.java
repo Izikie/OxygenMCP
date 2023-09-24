@@ -85,8 +85,8 @@ public class GameSettings {
     public int clouds = 2;
     public boolean fancyGraphics = true;
     public int ambientOcclusion = 2;
-    public List<String> resourcePacks = Lists.<String>newArrayList();
-    public List<String> incompatibleResourcePacks = Lists.<String>newArrayList();
+    public List<String> resourcePacks = Lists.newArrayList();
+    public List<String> incompatibleResourcePacks = Lists.newArrayList();
     public EntityPlayer.EnumChatVisibility chatVisibility = EntityPlayer.EnumChatVisibility.FULL;
     public boolean chatColours = true;
     public boolean chatLinks = true;
@@ -739,7 +739,7 @@ public class GameSettings {
                                 this.resourcePacks = gson.fromJson(s.substring(s.indexOf(58) + 1), typeListString);
 
                                 if (this.resourcePacks == null) {
-                                    this.resourcePacks = Lists.<String>newArrayList();
+                                    this.resourcePacks = Lists.newArrayList();
                                 }
                             }
 
@@ -747,7 +747,7 @@ public class GameSettings {
                                 this.incompatibleResourcePacks = gson.fromJson(s.substring(s.indexOf(58) + 1), typeListString);
 
                                 if (this.incompatibleResourcePacks == null) {
-                                    this.incompatibleResourcePacks = Lists.<String>newArrayList();
+                                    this.incompatibleResourcePacks = Lists.newArrayList();
                                 }
                             }
 

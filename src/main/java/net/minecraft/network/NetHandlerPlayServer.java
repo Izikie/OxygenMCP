@@ -372,7 +372,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
     }
 
     public void setPlayerLocation(double x, double y, double z, float yaw, float pitch) {
-        this.setPlayerLocation(x, y, z, yaw, pitch, Collections.<S08PacketPlayerPosLook.EnumFlags>emptySet());
+        this.setPlayerLocation(x, y, z, yaw, pitch, Collections.emptySet());
     }
 
     public void setPlayerLocation(double x, double y, double z, float yaw, float pitch, Set<S08PacketPlayerPosLook.EnumFlags> relativeSet) {
@@ -799,7 +799,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
         if (this.playerEntity.openContainer.windowId == packetIn.getWindowId() && this.playerEntity.openContainer.getCanCraft(this.playerEntity)) {
             if (this.playerEntity.isSpectator()) {
-                List<ItemStack> list = Lists.<ItemStack>newArrayList();
+                List<ItemStack> list = Lists.newArrayList();
 
                 for (int i = 0; i < this.playerEntity.openContainer.inventorySlots.size(); ++i) {
                     list.add(this.playerEntity.openContainer.inventorySlots.get(i).getStack());
@@ -819,7 +819,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     this.field_147372_n.addKey(this.playerEntity.openContainer.windowId, packetIn.getActionNumber());
                     this.playerEntity.playerNetServerHandler.sendPacket(new S32PacketConfirmTransaction(packetIn.getWindowId(), packetIn.getActionNumber(), false));
                     this.playerEntity.openContainer.setCanCraft(this.playerEntity, false);
-                    List<ItemStack> list1 = Lists.<ItemStack>newArrayList();
+                    List<ItemStack> list1 = Lists.newArrayList();
 
                     for (int j = 0; j < this.playerEntity.openContainer.inventorySlots.size(); ++j) {
                         list1.add(this.playerEntity.openContainer.inventorySlots.get(j).getStack());
@@ -947,7 +947,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
     public void processTabComplete(C14PacketTabComplete packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
-        List<String> list = Lists.<String>newArrayList();
+        List<String> list = Lists.newArrayList();
 
         for (String s : this.serverController.getTabCompletions(this.playerEntity, packetIn.getMessage(), packetIn.getTargetBlock())) {
             list.add(s);

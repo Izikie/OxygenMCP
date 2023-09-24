@@ -18,9 +18,9 @@ import net.optifine.CustomItems;
 import net.optifine.reflect.Reflector;
 
 public class ItemModelMesher {
-    private final Map<Integer, ModelResourceLocation> simpleShapes = Maps.<Integer, ModelResourceLocation>newHashMap();
-    private final Map<Integer, IBakedModel> simpleShapesCache = Maps.<Integer, IBakedModel>newHashMap();
-    private final Map<Item, ItemMeshDefinition> shapers = Maps.<Item, ItemMeshDefinition>newHashMap();
+    private final Map<Integer, ModelResourceLocation> simpleShapes = Maps.newHashMap();
+    private final Map<Integer, IBakedModel> simpleShapesCache = Maps.newHashMap();
+    private final Map<Item, ItemMeshDefinition> shapers = Maps.newHashMap();
     private final ModelManager modelManager;
 
     public ItemModelMesher(ModelManager modelManager) {

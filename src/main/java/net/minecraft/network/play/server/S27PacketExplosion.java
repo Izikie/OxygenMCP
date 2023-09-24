@@ -44,7 +44,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient> {
         this.posZ = buf.readFloat();
         this.strength = buf.readFloat();
         int i = buf.readInt();
-        this.affectedBlockPositions = Lists.<BlockPos>newArrayListWithCapacity(i);
+        this.affectedBlockPositions = Lists.newArrayListWithCapacity(i);
         int j = (int) this.posX;
         int k = (int) this.posY;
         int l = (int) this.posZ;
