@@ -2299,7 +2299,7 @@ public class Shaders {
                         }
                     }
                 } catch (Exception exception) {
-                    SMCLog.severe("Couldn\'t read " + filename + "!");
+                    SMCLog.severe("Couldn't read " + filename + "!");
                     exception.printStackTrace();
                     ARBShaderObjects.glDeleteObjectARB(i);
                     return 0;
@@ -2378,7 +2378,7 @@ public class Shaders {
                         }
                     }
                 } catch (Exception exception) {
-                    SMCLog.severe("Couldn\'t read " + filename + "!");
+                    SMCLog.severe("Couldn't read " + filename + "!");
                     exception.printStackTrace();
                     ARBShaderObjects.glDeleteObjectARB(i);
                     return 0;
@@ -2626,7 +2626,7 @@ public class Shaders {
                         }
                     }
                 } catch (Exception exception) {
-                    SMCLog.severe("Couldn\'t read " + filename + "!");
+                    SMCLog.severe("Couldn't read " + filename + "!");
                     exception.printStackTrace();
                     ARBShaderObjects.glDeleteObjectARB(i);
                     return 0;

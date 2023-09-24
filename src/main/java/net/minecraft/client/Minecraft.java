@@ -481,7 +481,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         try {
             Display.create((new PixelFormat()).withDepthBits(24));
         } catch (LWJGLException lwjglexception) {
-            logger.error("Couldn\'t set pixel format", lwjglexception);
+            logger.error("Couldn't set pixel format", lwjglexception);
 
             try {
                 Thread.sleep(1000L);
@@ -523,7 +523,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
                     Display.setIcon(new ByteBuffer[]{this.readImageToBuffer(inputstream), this.readImageToBuffer(inputstream1)});
                 }
             } catch (IOException ioexception) {
-                logger.error("Couldn\'t set icon", ioexception);
+                logger.error("Couldn't set icon", ioexception);
             } finally {
                 IOUtils.closeQuietly(inputstream);
                 IOUtils.closeQuietly(inputstream1);
@@ -1161,7 +1161,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             this.thePlayer.swingItem();
 
             if (this.objectMouseOver == null) {
-                logger.error("Null returned as \'hitResult\', this shouldn\'t happen!");
+                logger.error("Null returned as 'hitResult', this shouldn't happen!");
 
                 if (this.playerController.isNotCreative()) {
                     this.leftClickCounter = 10;
@@ -1198,7 +1198,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             ItemStack itemstack = this.thePlayer.inventory.getCurrentItem();
 
             if (this.objectMouseOver == null) {
-                logger.warn("Null returned as \'hitResult\', this shouldn\'t happen!");
+                logger.warn("Null returned as 'hitResult', this shouldn't happen!");
             } else {
                 switch (this.objectMouseOver.typeOfHit) {
                     case ENTITY:
@@ -1285,7 +1285,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             Display.setVSyncEnabled(this.gameSettings.enableVsync);
             this.updateDisplay();
         } catch (Exception exception) {
-            logger.error("Couldn\'t toggle fullscreen", exception);
+            logger.error("Couldn't toggle fullscreen", exception);
         }
     }
 
@@ -2047,7 +2047,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
         theCrash.getCategory().addCrashSectionCallable("Is Modded", new Callable<String>() {
             public String call() throws Exception {
                 String s = ClientBrandRetriever.getClientModName();
-                return !s.equals("vanilla") ? "Definitely; Client brand changed to \'" + s + "\'" : (Minecraft.class.getSigners() == null ? "Very likely; Jar signature invalidated" : "Probably not. Jar signature remains and client brand is untouched.");
+                return !s.equals("vanilla") ? "Definitely; Client brand changed to '" + s + "'" : (Minecraft.class.getSigners() == null ? "Very likely; Jar signature invalidated" : "Probably not. Jar signature remains and client brand is untouched.");
             }
         });
         theCrash.getCategory().addCrashSectionCallable("Type", new Callable<String>() {

@@ -323,7 +323,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             for (WorldServer worldserver : this.worldServers) {
                 if (worldserver != null) {
                     if (!dontLog) {
-                        logger.info("Saving chunks for level \'" + worldserver.getWorldInfo().getWorldName() + "\'/" + worldserver.provider.getDimensionName());
+                        logger.info("Saving chunks for level '" + worldserver.getWorldInfo().getWorldName() + "'/" + worldserver.provider.getDimensionName());
                     }
 
                     try {
@@ -392,7 +392,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                     long j = k - this.currentTime;
 
                     if (j > 2000L && this.currentTime - this.timeOfLastWarning >= 15000L) {
-                        logger.warn("Can\'t keep up! Did the system time change, or is the server overloaded? Running {}ms behind, skipping {} tick(s)", new Object[]{j, j / 50L});
+                        logger.warn("Can't keep up! Did the system time change, or is the server overloaded? Running {}ms behind, skipping {} tick(s)", new Object[]{j, j / 50L});
                         j = 2000L;
                         this.timeOfLastWarning = this.currentTime;
                     }
@@ -466,7 +466,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 ByteBuf bytebuf1 = Base64.encode(bytebuf);
                 response.setFavicon("data:image/png;base64," + bytebuf1.toString(Charsets.UTF_8));
             } catch (Exception exception) {
-                logger.error("Couldn\'t load server icon", exception);
+                logger.error("Couldn't load server icon", exception);
             } finally {
                 bytebuf.release();
             }

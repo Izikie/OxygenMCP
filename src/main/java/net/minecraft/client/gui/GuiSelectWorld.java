@@ -47,7 +47,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
         try {
             this.loadLevelList();
         } catch (AnvilConverterException anvilconverterexception) {
-            logger.error("Couldn\'t load level list", anvilconverterexception);
+            logger.error("Couldn't load level list", anvilconverterexception);
             this.mc.displayGuiScreen(new GuiErrorScreen("Unable to load worlds", anvilconverterexception.getMessage()));
             return;
         }
@@ -168,7 +168,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
                 try {
                     this.loadLevelList();
                 } catch (AnvilConverterException anvilconverterexception) {
-                    logger.error("Couldn\'t load level list", anvilconverterexception);
+                    logger.error("Couldn't load level list", anvilconverterexception);
                 }
             }
 
@@ -184,7 +184,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
 
     public static GuiYesNo makeDeleteWorldYesNo(GuiYesNoCallback selectWorld, String name, int id) {
         String s = I18n.format("selectWorld.deleteQuestion", new Object[0]);
-        String s1 = "\'" + name + "\' " + I18n.format("selectWorld.deleteWarning", new Object[0]);
+        String s1 = "'" + name + "' " + I18n.format("selectWorld.deleteWarning", new Object[0]);
         String s2 = I18n.format("selectWorld.deleteButton", new Object[0]);
         String s3 = I18n.format("gui.cancel", new Object[0]);
         GuiYesNo guiyesno = new GuiYesNo(selectWorld, s, s1, s2, s3, id);

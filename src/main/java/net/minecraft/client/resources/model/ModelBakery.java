@@ -139,7 +139,7 @@ public class ModelBakery {
                         ModelBlockDefinition modelblockdefinition1 = ModelBlockDefinition.parseFromReader(new InputStreamReader(inputstream, Charsets.UTF_8));
                         list.add(modelblockdefinition1);
                     } catch (Exception exception) {
-                        throw new RuntimeException("Encountered an exception when loading model definition of \'" + p_177586_1_ + "\' from: \'" + iresource.getResourceLocation() + "\' in resourcepack: \'" + iresource.getResourcePackName() + "\'", exception);
+                        throw new RuntimeException("Encountered an exception when loading model definition of '" + p_177586_1_ + "' from: '" + iresource.getResourceLocation() + "' in resourcepack: '" + iresource.getResourcePackName() + "'", exception);
                     } finally {
                         IOUtils.closeQuietly(inputstream);
                     }
@@ -169,7 +169,7 @@ public class ModelBakery {
                         ModelBlock modelblock = this.loadModel(resourcelocation);
                         this.models.put(resourcelocation, modelblock);
                     } catch (Exception exception) {
-                        LOGGER.warn("Unable to load block model: \'" + resourcelocation + "\' for variant: \'" + modelresourcelocation + "\'", exception);
+                        LOGGER.warn("Unable to load block model: '" + resourcelocation + "' for variant: '" + modelresourcelocation + "'", exception);
                     }
                 }
             }
@@ -249,7 +249,7 @@ public class ModelBakery {
                         ModelBlock modelblock = this.loadModel(resourcelocation);
                         this.models.put(resourcelocation, modelblock);
                     } catch (Exception exception) {
-                        LOGGER.warn("Unable to load item model: \'" + resourcelocation + "\' for item: \'" + Item.itemRegistry.getNameForObject(item) + "\'", exception);
+                        LOGGER.warn("Unable to load item model: '" + resourcelocation + "' for item: '" + Item.itemRegistry.getNameForObject(item) + "'", exception);
                     }
                 }
             }
@@ -264,7 +264,7 @@ public class ModelBakery {
                 ModelBlock modelblock = this.loadModel(p_loadItemModel_2_);
                 this.models.put(p_loadItemModel_2_, modelblock);
             } catch (Exception exception) {
-                LOGGER.warn("Unable to load item model: \'{}\' for item: \'{}\'", new Object[]{p_loadItemModel_2_, p_loadItemModel_3_});
+                LOGGER.warn("Unable to load item model: '{}' for item: '{}'", new Object[]{p_loadItemModel_2_, p_loadItemModel_3_});
                 LOGGER.warn(exception.getClass().getName() + ": " + exception.getMessage());
             }
         }
@@ -493,7 +493,7 @@ public class ModelBakery {
                     deque.add(resourcelocation3);
                 }
             } catch (Exception var6) {
-                LOGGER.warn("In parent chain: " + JOINER.join(this.getParentPath(resourcelocation2)) + "; unable to load model: \'" + resourcelocation2 + "\'");
+                LOGGER.warn("In parent chain: " + JOINER.join(this.getParentPath(resourcelocation2)) + "; unable to load model: '" + resourcelocation2 + "'");
             }
 
             set.add(resourcelocation2);

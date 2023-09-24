@@ -762,12 +762,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     this.playerEntity = this.serverController.getConfigurationManager().recreatePlayerEntity(this.playerEntity, 0, true);
                 } else if (this.playerEntity.getServerForPlayer().getWorldInfo().isHardcoreModeEnabled()) {
                     if (this.serverController.isSinglePlayer() && this.playerEntity.getName().equals(this.serverController.getServerOwner())) {
-                        this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it\'s game over!");
+                        this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it's game over!");
                         this.serverController.deleteWorldAndStopServer();
                     } else {
                         UserListBansEntry userlistbansentry = new UserListBansEntry(this.playerEntity.getGameProfile(), null, "(You just lost the game)", null, "Death in Hardcore");
                         this.serverController.getConfigurationManager().getBannedPlayers().addEntry(userlistbansentry);
-                        this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it\'s game over!");
+                        this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it's game over!");
                     }
                 } else {
                     if (this.playerEntity.getHealth() > 0.0F) {
@@ -988,7 +988,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     return;
                 }
             } catch (Exception exception3) {
-                logger.error("Couldn\'t handle book info", exception3);
+                logger.error("Couldn't handle book info", exception3);
                 return;
             } finally {
                 packetbuffer3.release();
@@ -1022,7 +1022,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     return;
                 }
             } catch (Exception exception4) {
-                logger.error("Couldn\'t sign book", exception4);
+                logger.error("Couldn't sign book", exception4);
                 return;
             } finally {
                 packetbuffer2.release();
@@ -1038,7 +1038,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     ((ContainerMerchant) container).setCurrentRecipeIndex(i);
                 }
             } catch (Exception exception2) {
-                logger.error("Couldn\'t select trade", exception2);
+                logger.error("Couldn't select trade", exception2);
             }
         } else if ("MC|AdvCdm".equals(packetIn.getChannelName())) {
             if (!this.serverController.isCommandBlockEnabled()) {
@@ -1079,7 +1079,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                         this.playerEntity.addChatMessage(new ChatComponentTranslation("advMode.setCommand.success", new Object[]{s1}));
                     }
                 } catch (Exception exception1) {
-                    logger.error("Couldn\'t set command block", exception1);
+                    logger.error("Couldn't set command block", exception1);
                 } finally {
                     packetbuffer.release();
                 }
@@ -1103,7 +1103,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                         iinventory.markDirty();
                     }
                 } catch (Exception exception) {
-                    logger.error("Couldn\'t set beacon", exception);
+                    logger.error("Couldn't set beacon", exception);
                 }
             }
         } else if ("MC|ItemName".equals(packetIn.getChannelName()) && this.playerEntity.openContainer instanceof ContainerRepair) {

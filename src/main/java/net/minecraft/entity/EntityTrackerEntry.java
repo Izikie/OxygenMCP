@@ -477,7 +477,7 @@ public class EntityTrackerEntry {
         } else if (this.trackedEntity instanceof EntityXPOrb) {
             return new S11PacketSpawnExperienceOrb((EntityXPOrb) this.trackedEntity);
         } else {
-            throw new IllegalArgumentException("Don\'t know how to add " + this.trackedEntity.getClass() + "!");
+            throw new IllegalArgumentException("Don't know how to add " + this.trackedEntity.getClass() + "!");
         }
     }
 

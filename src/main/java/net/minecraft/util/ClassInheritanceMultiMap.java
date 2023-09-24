@@ -58,7 +58,7 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
 
             return clazz;
         } else {
-            throw new IllegalArgumentException("Don\'t know how to search for " + clazz);
+            throw new IllegalArgumentException("Don't know how to search for " + clazz);
         }
     }
 

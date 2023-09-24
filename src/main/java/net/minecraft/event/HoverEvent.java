@@ -48,7 +48,7 @@ public class HoverEvent {
     }
 
     public String toString() {
-        return "HoverEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
+        return "HoverEvent{action=" + this.action + ", value='" + this.value + '\'' + '}';
     }
 
     public int hashCode() {

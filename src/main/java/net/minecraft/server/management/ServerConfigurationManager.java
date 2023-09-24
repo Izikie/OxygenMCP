@@ -67,7 +67,7 @@ public abstract class ServerConfigurationManager {
     public static final File FILE_OPS = new File("ops.json");
     public static final File FILE_WHITELIST = new File("whitelist.json");
     private static final Logger logger = LogManager.getLogger();
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     private final MinecraftServer mcServer;
     private final List<EntityPlayerMP> playerEntityList = Lists.<EntityPlayerMP>newArrayList();
     private final Map<UUID, EntityPlayerMP> uuidToPlayerMap = Maps.<UUID, EntityPlayerMP>newHashMap();

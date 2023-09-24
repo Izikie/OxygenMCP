@@ -197,7 +197,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
                     Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
                     oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new Object[]{new URI(this.openGLWarningLink)});
                 } catch (Throwable throwable) {
-                    logger.error("Couldn\'t open link", throwable);
+                    logger.error("Couldn't open link", throwable);
                 }
             }
 
