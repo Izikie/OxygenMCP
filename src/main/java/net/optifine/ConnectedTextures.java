@@ -137,18 +137,18 @@ public class ConnectedTextures {
             double d0 = quad.getMidX();
 
             if (d0 < 0.4D) {
-                if (iblockstate.getValue(BlockPane.WEST).booleanValue()) {
+                if (iblockstate.getValue(BlockPane.WEST)) {
                     return true;
                 }
             } else if (d0 > 0.6D) {
-                if (iblockstate.getValue(BlockPane.EAST).booleanValue()) {
+                if (iblockstate.getValue(BlockPane.EAST)) {
                     return true;
                 }
             } else {
                 double d1 = quad.getMidZ();
 
                 if (d1 < 0.4D) {
-                    if (iblockstate.getValue(BlockPane.NORTH).booleanValue()) {
+                    if (iblockstate.getValue(BlockPane.NORTH)) {
                         return true;
                     }
                 } else {
@@ -156,7 +156,7 @@ public class ConnectedTextures {
                         return true;
                     }
 
-                    if (iblockstate.getValue(BlockPane.SOUTH).booleanValue()) {
+                    if (iblockstate.getValue(BlockPane.SOUTH)) {
                         return true;
                     }
                 }

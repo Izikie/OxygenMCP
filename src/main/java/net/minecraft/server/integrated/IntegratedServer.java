@@ -114,7 +114,7 @@ public class IntegratedServer extends MinecraftServer {
             int i = ainteger.length;
 
             for (int j = 0; j < i; ++j) {
-                int k = ainteger1[j].intValue();
+                int k = ainteger1[j];
                 WorldServer worldserver1 = k == 0 ? worldserver : (WorldServer) (new WorldServerMulti(this, isavehandler, k, worldserver, this.theProfiler)).init();
                 worldserver1.addWorldAccess(new WorldManager(this, worldserver1));
 

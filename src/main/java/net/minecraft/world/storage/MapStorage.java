@@ -140,13 +140,13 @@ public class MapStorage {
         if (oshort == null) {
             oshort = (short) 0;
         } else {
-            oshort = (short) (oshort.shortValue() + 1);
+            oshort = (short) (oshort + 1);
         }
 
         this.idCounts.put(key, oshort);
 
         if (this.saveHandler == null) {
-            return oshort.shortValue();
+            return oshort;
         } else {
             try {
                 File file1 = this.saveHandler.getMapFileFromName("idcounts");
@@ -155,7 +155,7 @@ public class MapStorage {
                     NBTTagCompound nbttagcompound = new NBTTagCompound();
 
                     for (String s : this.idCounts.keySet()) {
-                        short short1 = this.idCounts.get(s).shortValue();
+                        short short1 = this.idCounts.get(s);
                         nbttagcompound.setShort(s, short1);
                     }
 
@@ -167,7 +167,7 @@ public class MapStorage {
                 exception.printStackTrace();
             }
 
-            return oshort.shortValue();
+            return oshort;
         }
     }
 }

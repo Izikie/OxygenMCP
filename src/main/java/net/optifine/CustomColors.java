@@ -220,7 +220,7 @@ public class CustomColors {
             myceliumParticleColors = getCustomColors(s, astring11, -1, -1);
             Pair<LightMapPack[], Integer> pair = parseLightMapPacks();
             lightMapPacks = pair.getLeft();
-            lightmapMinDimensionId = pair.getRight().intValue();
+            lightmapMinDimensionId = pair.getRight();
             readColorProperties("mcpatcher/color.properties");
             blockColormaps = readBlockColormaps(new String[]{s + "custom/", s + "blocks/"}, colorsBlockColormaps, 256, 256);
             updateUseDefaultGrassFoliageColors();
@@ -288,8 +288,8 @@ public class CustomColors {
         if (ainteger.length <= 0) {
             return new ImmutablePair(null, 0);
         } else {
-            int j1 = ainteger[0].intValue();
-            int k1 = ainteger[ainteger.length - 1].intValue();
+            int j1 = ainteger[0];
+            int k1 = ainteger[ainteger.length - 1];
             int k = k1 - j1 + 1;
             CustomColormap[] acustomcolormap = new CustomColormap[k];
 
@@ -302,7 +302,7 @@ public class CustomColors {
                     if (customcolormap.getWidth() < 16) {
                         warn("Invalid lightmap width: " + customcolormap.getWidth() + ", path: " + s4);
                     } else {
-                        int i1 = integer.intValue() - j1;
+                        int i1 = integer - j1;
                         acustomcolormap[i1] = customcolormap;
                     }
                 }
@@ -879,7 +879,7 @@ public class CustomColors {
                 return def;
             } else {
                 Integer integer = (Integer) object;
-                return integer.intValue();
+                return integer;
             }
         }
     }
@@ -1134,7 +1134,7 @@ public class CustomColors {
             int[] aint = new int[list.size()];
 
             for (int l = 0; l < aint.length; ++l) {
-                aint[l] = list.get(l).intValue();
+                aint[l] = list.get(l);
             }
 
             return aint;

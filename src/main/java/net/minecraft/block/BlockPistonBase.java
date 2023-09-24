@@ -69,11 +69,11 @@ public class BlockPistonBase extends Block {
         EnumFacing enumfacing = state.getValue(FACING);
         boolean flag = this.shouldBeExtended(worldIn, pos, enumfacing);
 
-        if (flag && !state.getValue(EXTENDED).booleanValue()) {
+        if (flag && !state.getValue(EXTENDED)) {
             if ((new BlockPistonStructureHelper(worldIn, pos, enumfacing, true)).canMove()) {
                 worldIn.addBlockEvent(pos, this, 0, enumfacing.getIndex());
             }
-        } else if (!flag && state.getValue(EXTENDED).booleanValue()) {
+        } else if (!flag && state.getValue(EXTENDED)) {
             worldIn.setBlockState(pos, state.withProperty(EXTENDED, Boolean.FALSE), 2);
             worldIn.addBlockEvent(pos, this, 1, enumfacing.getIndex());
         }
@@ -168,7 +168,7 @@ public class BlockPistonBase extends Block {
     public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
-        if (iblockstate.getBlock() == this && iblockstate.getValue(EXTENDED).booleanValue()) {
+        if (iblockstate.getBlock() == this && iblockstate.getValue(EXTENDED)) {
             float f = 0.25F;
             EnumFacing enumfacing = iblockstate.getValue(FACING);
 
@@ -265,7 +265,7 @@ public class BlockPistonBase extends Block {
 
                         return true;
                     }
-                } else if (worldIn.getBlockState(pos).getValue(EXTENDED).booleanValue()) {
+                } else if (worldIn.getBlockState(pos).getValue(EXTENDED)) {
                     return false;
                 }
 
@@ -355,7 +355,7 @@ public class BlockPistonBase extends Block {
         int i = 0;
         i = i | state.getValue(FACING).getIndex();
 
-        if (state.getValue(EXTENDED).booleanValue()) {
+        if (state.getValue(EXTENDED)) {
             i |= 8;
         }
 
