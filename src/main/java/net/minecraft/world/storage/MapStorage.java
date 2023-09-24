@@ -125,7 +125,7 @@ public class MapStorage {
                     if (nbtbase instanceof NBTTagShort) {
                         NBTTagShort nbttagshort = (NBTTagShort) nbtbase;
                         short short1 = nbttagshort.getShort();
-                        this.idCounts.put(s, Short.valueOf(short1));
+                        this.idCounts.put(s, short1);
                     }
                 }
             }
@@ -138,9 +138,9 @@ public class MapStorage {
         Short oshort = this.idCounts.get(key);
 
         if (oshort == null) {
-            oshort = Short.valueOf((short) 0);
+            oshort = (short) 0;
         } else {
-            oshort = Short.valueOf((short) (oshort.shortValue() + 1));
+            oshort = (short) (oshort.shortValue() + 1);
         }
 
         this.idCounts.put(key, oshort);

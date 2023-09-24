@@ -444,7 +444,7 @@ public class CustomColormap implements CustomColors.IColorizer {
                 MatchBlock matchblock = this.matchBlocks[i];
 
                 if (matchblock.getBlockId() >= 0) {
-                    set.add(Integer.valueOf(matchblock.getBlockId()));
+                    set.add(matchblock.getBlockId());
                 }
             }
 

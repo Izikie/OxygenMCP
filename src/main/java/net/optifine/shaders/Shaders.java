@@ -898,7 +898,7 @@ public class Shaders {
             String s = "/shaders/world" + i;
 
             if (shaderPack.hasDirectory(s)) {
-                shaderPackDimensions.add(Integer.valueOf(i));
+                shaderPackDimensions.add(i);
             }
         }
 
@@ -1627,7 +1627,7 @@ public class Shaders {
         int i = EXTFramebufferObject.glCheckFramebufferStatusEXT(36160);
 
         if (i != 36053) {
-            System.err.format("FramebufferStatus 0x%04X at %s\n", new Object[]{Integer.valueOf(i), location});
+            System.err.format("FramebufferStatus 0x%04X at %s\n", new Object[]{i, location});
         }
 
         return i;
@@ -1639,11 +1639,11 @@ public class Shaders {
         if (i != 0 && GlErrors.isEnabled(i)) {
             String s = Config.getGlErrorString(i);
             String s1 = getErrorInfo(i, location);
-            String s2 = String.format("OpenGL error: %s (%s)%s, at: %s", new Object[]{Integer.valueOf(i), s, s1, location});
+            String s2 = String.format("OpenGL error: %s (%s)%s, at: %s", new Object[]{i, s, s1, location});
             SMCLog.severe(s2);
 
             if (Config.isShowGlErrors() && TimedEvent.isActive("ShowGlErrorShaders", 10000L)) {
-                String s3 = I18n.format("of.message.openglError", new Object[]{Integer.valueOf(i), s});
+                String s3 = I18n.format("of.message.openglError", new Object[]{i, s});
                 printChat(s3);
             }
         }
@@ -1930,7 +1930,7 @@ public class Shaders {
             if (currentWorld != null) {
                 int i = currentWorld.provider.getDimensionId();
 
-                if (shaderPackDimensions.contains(Integer.valueOf(i))) {
+                if (shaderPackDimensions.contains(i)) {
                     s = "world" + i + "/";
                 }
             }
@@ -2563,7 +2563,7 @@ public class Shaders {
 
                                                                 if (vector4f != null) {
                                                                     gbuffersClearColor[j1] = vector4f;
-                                                                    SMCLog.info("%s clear color: %s %s %s %s", new Object[]{s3, Float.valueOf(vector4f.getX()), Float.valueOf(vector4f.getY()), Float.valueOf(vector4f.getZ()), Float.valueOf(vector4f.getW())});
+                                                                    SMCLog.info("%s clear color: %s %s %s %s", new Object[]{s3, vector4f.getX(), vector4f.getY(), vector4f.getZ(), vector4f.getW()});
                                                                 } else {
                                                                     SMCLog.warning("Invalid color value: " + shaderline.getValue());
                                                                 }
@@ -3012,7 +3012,7 @@ public class Shaders {
             for (ResourceLocation resourcelocation : Block.blockRegistry.getKeys()) {
                 Block block = Block.blockRegistry.getObject(resourcelocation);
                 int i = Block.blockRegistry.getIDForObject(block);
-                mapBlockToEntityData.put(block, Integer.valueOf(i));
+                mapBlockToEntityData.put(block, i);
             }
         }
 
@@ -3038,7 +3038,7 @@ public class Shaders {
                         Block block1 = Block.getBlockFromName(s2);
 
                         if (block1 != null) {
-                            mapBlockToEntityData.put(block1, Integer.valueOf(j));
+                            mapBlockToEntityData.put(block1, j);
                         } else {
                             SMCLog.warning("Unknown block name %s", new Object[]{s2});
                         }
@@ -3526,8 +3526,8 @@ public class Shaders {
             int j = getDimensionId(world);
 
             if (j != i) {
-                boolean flag = shaderPackDimensions.contains(Integer.valueOf(i));
-                boolean flag1 = shaderPackDimensions.contains(Integer.valueOf(j));
+                boolean flag = shaderPackDimensions.contains(i);
+                boolean flag1 = shaderPackDimensions.contains(j);
 
                 if (flag || flag1) {
                     uninit();

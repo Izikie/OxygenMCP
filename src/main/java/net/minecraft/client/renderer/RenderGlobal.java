@@ -598,7 +598,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             for (int j = 0; j < this.theWorld.weatherEffects.size(); ++j) {
                 Entity entity1 = this.theWorld.weatherEffects.get(j);
 
-                if (!flag || Reflector.callBoolean(entity1, Reflector.ForgeEntity_shouldRenderInPass, new Object[]{Integer.valueOf(i)})) {
+                if (!flag || Reflector.callBoolean(entity1, Reflector.ForgeEntity_shouldRenderInPass, new Object[]{i})) {
                     ++this.countEntitiesRendered;
 
                     if (entity1.isInRangeToRender3d(d0, d1, d2)) {
@@ -673,7 +673,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                             entity2 = (Entity) iterator.next();
 
-                            if (!flag || Reflector.callBoolean(entity2, Reflector.ForgeEntity_shouldRenderInPass, new Object[]{Integer.valueOf(i)})) {
+                            if (!flag || Reflector.callBoolean(entity2, Reflector.ForgeEntity_shouldRenderInPass, new Object[]{i})) {
                                 flag4 = this.renderManager.shouldRender(entity2, camera, d0, d1, d2) || entity2.riddenByEntity == this.mc.thePlayer;
 
                                 if (!flag4) {
@@ -697,7 +697,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                             }
                         }
 
-                        if (!flag4 && entity2 instanceof EntityWitherSkull && (!flag || Reflector.callBoolean(entity2, Reflector.ForgeEntity_shouldRenderInPass, new Object[]{Integer.valueOf(i)}))) {
+                        if (!flag4 && entity2 instanceof EntityWitherSkull && (!flag || Reflector.callBoolean(entity2, Reflector.ForgeEntity_shouldRenderInPass, new Object[]{i}))) {
                             this.renderedEntity = entity2;
 
                             if (flag6) {
@@ -749,7 +749,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                                 break;
                             }
 
-                            if (Reflector.callBoolean(tileentity1, Reflector.ForgeTileEntity_shouldRenderInPass, new Object[]{Integer.valueOf(i)})) {
+                            if (Reflector.callBoolean(tileentity1, Reflector.ForgeTileEntity_shouldRenderInPass, new Object[]{i})) {
                                 AxisAlignedBB axisalignedbb1 = (AxisAlignedBB) Reflector.call(tileentity1, Reflector.ForgeTileEntity_getRenderBoundingBox, new Object[0]);
 
                                 if (axisalignedbb1 == null || camera.isBoundingBoxInFrustum(axisalignedbb1)) {
@@ -770,7 +770,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
             synchronized (this.setTileEntities) {
                 for (TileEntity tileentity : this.setTileEntities) {
-                    if (!flag1 || Reflector.callBoolean(tileentity, Reflector.ForgeTileEntity_shouldRenderInPass, new Object[]{Integer.valueOf(i)})) {
+                    if (!flag1 || Reflector.callBoolean(tileentity, Reflector.ForgeTileEntity_shouldRenderInPass, new Object[]{i})) {
                         if (flag6) {
                             Shaders.nextBlockEntity(tileentity);
                         }
@@ -809,7 +809,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 if (flag1) {
                     flag9 = false;
 
-                    if (tileentity2 != null && Reflector.callBoolean(tileentity2, Reflector.ForgeTileEntity_shouldRenderInPass, new Object[]{Integer.valueOf(i)}) && Reflector.callBoolean(tileentity2, Reflector.ForgeTileEntity_canRenderBreaking, new Object[0])) {
+                    if (tileentity2 != null && Reflector.callBoolean(tileentity2, Reflector.ForgeTileEntity_shouldRenderInPass, new Object[]{i}) && Reflector.callBoolean(tileentity2, Reflector.ForgeTileEntity_canRenderBreaking, new Object[0])) {
                         AxisAlignedBB axisalignedbb = (AxisAlignedBB) Reflector.call(tileentity2, Reflector.ForgeTileEntity_getRenderBoundingBox, new Object[0]);
 
                         if (axisalignedbb != null) {
@@ -854,7 +854,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             }
         }
 
-        return String.format("C: %d/%d %sD: %d, %s", new Object[]{Integer.valueOf(j), Integer.valueOf(i), this.mc.renderChunksMany ? "(s) " : "", Integer.valueOf(this.renderDistanceChunks), this.renderDispatcher.getDebugInfo()});
+        return String.format("C: %d/%d %sD: %d, %s", new Object[]{j, i, this.mc.renderChunksMany ? "(s) " : "", this.renderDistanceChunks, this.renderDispatcher.getDebugInfo()});
     }
 
     public String getDebugInfoEntities() {
@@ -1400,7 +1400,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             Object object = Reflector.call(worldprovider, Reflector.ForgeWorldProvider_getSkyRenderer, new Object[0]);
 
             if (object != null) {
-                Reflector.callVoid(object, Reflector.IRenderHandler_render, new Object[]{Float.valueOf(partialTicks), this.theWorld, this.mc});
+                Reflector.callVoid(object, Reflector.IRenderHandler_render, new Object[]{partialTicks, this.theWorld, this.mc});
                 return;
             }
         }
@@ -1700,7 +1700,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 Object object = Reflector.call(worldprovider, Reflector.ForgeWorldProvider_getCloudRenderer, new Object[0]);
 
                 if (object != null) {
-                    Reflector.callVoid(object, Reflector.IRenderHandler_render, new Object[]{Float.valueOf(partialTicks), this.theWorld, this.mc});
+                    Reflector.callVoid(object, Reflector.IRenderHandler_render, new Object[]{partialTicks, this.theWorld, this.mc});
                     return;
                 }
             }
@@ -2365,7 +2365,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         } catch (Throwable throwable) {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Exception while adding particle");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Particle being added");
-            crashreportcategory.addCrashSection("ID", Integer.valueOf(particleID));
+            crashreportcategory.addCrashSection("ID", particleID);
 
             if (parameters != null) {
                 crashreportcategory.addCrashSection("Parameters", parameters);
@@ -2721,17 +2721,17 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
     public void sendBlockBreakProgress(int breakerId, BlockPos pos, int progress) {
         if (progress >= 0 && progress < 10) {
-            DestroyBlockProgress destroyblockprogress = this.damagedBlocks.get(Integer.valueOf(breakerId));
+            DestroyBlockProgress destroyblockprogress = this.damagedBlocks.get(breakerId);
 
             if (destroyblockprogress == null || destroyblockprogress.getPosition().getX() != pos.getX() || destroyblockprogress.getPosition().getY() != pos.getY() || destroyblockprogress.getPosition().getZ() != pos.getZ()) {
                 destroyblockprogress = new DestroyBlockProgress(breakerId, pos);
-                this.damagedBlocks.put(Integer.valueOf(breakerId), destroyblockprogress);
+                this.damagedBlocks.put(breakerId, destroyblockprogress);
             }
 
             destroyblockprogress.setPartialBlockDamage(progress);
             destroyblockprogress.setCloudUpdateTick(this.cloudTickCounter);
         } else {
-            this.damagedBlocks.remove(Integer.valueOf(breakerId));
+            this.damagedBlocks.remove(breakerId);
         }
     }
 

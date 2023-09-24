@@ -452,9 +452,9 @@ public final class ItemStack {
             int i = Item.getIdFromItem(this.item);
 
             if (this.getHasSubtypes()) {
-                s = s + String.format("#%04d/%d%s", new Object[]{Integer.valueOf(i), Integer.valueOf(this.itemDamage), s1});
+                s = s + String.format("#%04d/%d%s", new Object[]{i, this.itemDamage, s1});
             } else {
-                s = s + String.format("#%04d%s", new Object[]{Integer.valueOf(i), s1});
+                s = s + String.format("#%04d%s", new Object[]{i, s1});
             }
         } else if (!this.hasDisplayName() && this.item == Items.filled_map) {
             s = s + " #" + this.itemDamage;
@@ -695,7 +695,7 @@ public final class ItemStack {
         ChatComponentText chatcomponenttext = new ChatComponentText(this.getDisplayName());
 
         if (this.hasDisplayName()) {
-            chatcomponenttext.getChatStyle().setItalic(Boolean.valueOf(true));
+            chatcomponenttext.getChatStyle().setItalic(Boolean.TRUE);
         }
 
         IChatComponent ichatcomponent = (new ChatComponentText("[")).appendSibling(chatcomponenttext).appendText("]");

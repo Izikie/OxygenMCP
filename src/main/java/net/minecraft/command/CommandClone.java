@@ -42,7 +42,7 @@ public class CommandClone extends CommandBase {
             int i = structureboundingbox.getXSize() * structureboundingbox.getYSize() * structureboundingbox.getZSize();
 
             if (i > 32768) {
-                throw new CommandException("commands.clone.tooManyBlocks", new Object[]{Integer.valueOf(i), Integer.valueOf(32768)});
+                throw new CommandException("commands.clone.tooManyBlocks", new Object[]{i, 32768});
             } else {
                 boolean flag = false;
                 Block block = null;
@@ -183,7 +183,7 @@ public class CommandClone extends CommandBase {
                                 throw new CommandException("commands.clone.failed", new Object[0]);
                             } else {
                                 sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, i);
-                                notifyOperators(sender, this, "commands.clone.success", new Object[]{Integer.valueOf(i)});
+                                notifyOperators(sender, this, "commands.clone.success", new Object[]{i});
                             }
                         } else {
                             throw new CommandException("commands.clone.outOfWorld", new Object[0]);

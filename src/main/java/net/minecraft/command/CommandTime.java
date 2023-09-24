@@ -33,14 +33,14 @@ public class CommandTime extends CommandBase {
                 }
 
                 this.setTime(sender, l);
-                notifyOperators(sender, this, "commands.time.set", new Object[]{Integer.valueOf(l)});
+                notifyOperators(sender, this, "commands.time.set", new Object[]{l});
                 return;
             }
 
             if (args[0].equals("add")) {
                 int k = parseInt(args[1], 0);
                 this.addTime(sender, k);
-                notifyOperators(sender, this, "commands.time.added", new Object[]{Integer.valueOf(k)});
+                notifyOperators(sender, this, "commands.time.added", new Object[]{k});
                 return;
             }
 
@@ -48,14 +48,14 @@ public class CommandTime extends CommandBase {
                 if (args[1].equals("daytime")) {
                     int j = (int) (sender.getEntityWorld().getWorldTime() % 2147483647L);
                     sender.setCommandStat(CommandResultStats.Type.QUERY_RESULT, j);
-                    notifyOperators(sender, this, "commands.time.query", new Object[]{Integer.valueOf(j)});
+                    notifyOperators(sender, this, "commands.time.query", new Object[]{j});
                     return;
                 }
 
                 if (args[1].equals("gametime")) {
                     int i = (int) (sender.getEntityWorld().getTotalWorldTime() % 2147483647L);
                     sender.setCommandStat(CommandResultStats.Type.QUERY_RESULT, i);
-                    notifyOperators(sender, this, "commands.time.query", new Object[]{Integer.valueOf(i)});
+                    notifyOperators(sender, this, "commands.time.query", new Object[]{i});
                     return;
                 }
             }

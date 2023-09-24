@@ -107,7 +107,7 @@ public class Config {
     private static boolean fullscreenModeChecked = false;
     private static boolean desktopModeChecked = false;
     private static DefaultResourcePack defaultResourcePackLazy = null;
-    public static final Float DEF_ALPHA_FUNC_LEVEL = Float.valueOf(0.1F);
+    public static final Float DEF_ALPHA_FUNC_LEVEL = 0.1F;
     private static final Logger LOGGER = LogManager.getLogger();
     public static final boolean logDetail = System.getProperty("log.detail", "false").equals("true");
     private static String mcDebugLast = null;
@@ -1202,11 +1202,11 @@ public class Config {
 
         if (i != 0 && GlErrors.isEnabled(i)) {
             String s = getGlErrorString(i);
-            String s1 = String.format("OpenGL error: %s (%s), at: %s", new Object[]{Integer.valueOf(i), s, p_checkGlError_0_});
+            String s1 = String.format("OpenGL error: %s (%s), at: %s", new Object[]{i, s, p_checkGlError_0_});
             error(s1);
 
             if (isShowGlErrors() && TimedEvent.isActive("ShowGlError", 10000L)) {
-                String s2 = I18n.format("of.message.openglError", new Object[]{Integer.valueOf(i), s});
+                String s2 = I18n.format("of.message.openglError", new Object[]{i, s});
                 minecraft.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(s2));
             }
         }

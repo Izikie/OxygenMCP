@@ -45,7 +45,7 @@ public class ReflectorForge {
     }
 
     public static boolean renderFirstPersonHand(RenderGlobal renderGlobal, float partialTicks, int pass) {
-        return !Reflector.ForgeHooksClient_renderFirstPersonHand.exists() ? false : Reflector.callBoolean(Reflector.ForgeHooksClient_renderFirstPersonHand, new Object[]{renderGlobal, Float.valueOf(partialTicks), Integer.valueOf(pass)});
+        return !Reflector.ForgeHooksClient_renderFirstPersonHand.exists() ? false : Reflector.callBoolean(Reflector.ForgeHooksClient_renderFirstPersonHand, new Object[]{renderGlobal, partialTicks, pass});
     }
 
     public static InputStream getOptiFineResourceStream(String path) {
@@ -120,11 +120,11 @@ public class ReflectorForge {
     }
 
     public static boolean canEntitySpawn(EntityLiving entityliving, World world, float x, float y, float z) {
-        Object object = Reflector.call(Reflector.ForgeEventFactory_canEntitySpawn, new Object[]{entityliving, world, Float.valueOf(x), Float.valueOf(y), Float.valueOf(z)});
+        Object object = Reflector.call(Reflector.ForgeEventFactory_canEntitySpawn, new Object[]{entityliving, world, x, y, z});
         return object == EVENT_RESULT_ALLOW || object == EVENT_RESULT_DEFAULT && entityliving.getCanSpawnHere() && entityliving.isNotColliding();
     }
 
     public static boolean doSpecialSpawn(EntityLiving entityliving, World world, float x, int y, float z) {
-        return Reflector.ForgeEventFactory_doSpecialSpawn.exists() ? Reflector.callBoolean(Reflector.ForgeEventFactory_doSpecialSpawn, new Object[]{entityliving, world, Float.valueOf(x), Integer.valueOf(y), Float.valueOf(z)}) : false;
+        return Reflector.ForgeEventFactory_doSpecialSpawn.exists() ? Reflector.callBoolean(Reflector.ForgeEventFactory_doSpecialSpawn, new Object[]{entityliving, world, x, y, z}) : false;
     }
 }

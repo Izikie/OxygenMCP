@@ -71,13 +71,13 @@ public class CommandTestForBlock extends CommandBase {
                     Block block1 = iblockstate.getBlock();
 
                     if (block1 != block) {
-                        throw new CommandException("commands.testforblock.failed.tile", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ()), block1.getLocalizedName(), block.getLocalizedName()});
+                        throw new CommandException("commands.testforblock.failed.tile", new Object[]{blockpos.getX(), blockpos.getY(), blockpos.getZ(), block1.getLocalizedName(), block.getLocalizedName()});
                     } else {
                         if (i > -1) {
                             int j = iblockstate.getBlock().getMetaFromState(iblockstate);
 
                             if (j != i) {
-                                throw new CommandException("commands.testforblock.failed.data", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ()), Integer.valueOf(j), Integer.valueOf(i)});
+                                throw new CommandException("commands.testforblock.failed.data", new Object[]{blockpos.getX(), blockpos.getY(), blockpos.getZ(), j, i});
                             }
                         }
 
@@ -85,19 +85,19 @@ public class CommandTestForBlock extends CommandBase {
                             TileEntity tileentity = world.getTileEntity(blockpos);
 
                             if (tileentity == null) {
-                                throw new CommandException("commands.testforblock.failed.tileEntity", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())});
+                                throw new CommandException("commands.testforblock.failed.tileEntity", new Object[]{blockpos.getX(), blockpos.getY(), blockpos.getZ()});
                             }
 
                             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
                             tileentity.writeToNBT(nbttagcompound1);
 
                             if (!NBTUtil.func_181123_a(nbttagcompound, nbttagcompound1, true)) {
-                                throw new CommandException("commands.testforblock.failed.nbt", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())});
+                                throw new CommandException("commands.testforblock.failed.nbt", new Object[]{blockpos.getX(), blockpos.getY(), blockpos.getZ()});
                             }
                         }
 
                         sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, 1);
-                        notifyOperators(sender, this, "commands.testforblock.success", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())});
+                        notifyOperators(sender, this, "commands.testforblock.success", new Object[]{blockpos.getX(), blockpos.getY(), blockpos.getZ()});
                     }
                 }
             }

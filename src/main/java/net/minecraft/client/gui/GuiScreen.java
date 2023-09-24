@@ -246,7 +246,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                 if (statbase != null) {
                     IChatComponent ichatcomponent = statbase.getStatName();
                     IChatComponent ichatcomponent1 = new ChatComponentTranslation("stats.tooltip.type." + (statbase.isAchievement() ? "achievement" : "statistic"), new Object[0]);
-                    ichatcomponent1.getChatStyle().setItalic(Boolean.valueOf(true));
+                    ichatcomponent1.getChatStyle().setItalic(Boolean.TRUE);
                     String s1 = statbase instanceof Achievement ? ((Achievement) statbase).getDescription() : null;
                     List<String> list = Lists.newArrayList(new String[]{ichatcomponent.getFormattedText(), ichatcomponent1.getFormattedText()});
 

@@ -189,11 +189,11 @@ public class GuiCreateFlatWorld extends GuiScreen {
             String s1;
 
             if (entryID == 0) {
-                s1 = I18n.format("createWorld.customize.flat.layer.top", new Object[]{Integer.valueOf(flatlayerinfo.getLayerCount())});
+                s1 = I18n.format("createWorld.customize.flat.layer.top", new Object[]{flatlayerinfo.getLayerCount()});
             } else if (entryID == GuiCreateFlatWorld.this.theFlatGeneratorInfo.getFlatLayers().size() - 1) {
-                s1 = I18n.format("createWorld.customize.flat.layer.bottom", new Object[]{Integer.valueOf(flatlayerinfo.getLayerCount())});
+                s1 = I18n.format("createWorld.customize.flat.layer.bottom", new Object[]{flatlayerinfo.getLayerCount()});
             } else {
-                s1 = I18n.format("createWorld.customize.flat.layer", new Object[]{Integer.valueOf(flatlayerinfo.getLayerCount())});
+                s1 = I18n.format("createWorld.customize.flat.layer", new Object[]{flatlayerinfo.getLayerCount()});
             }
 
             GuiCreateFlatWorld.this.fontRendererObj.drawString(s1, p_180791_2_ + 2 + 213 - GuiCreateFlatWorld.this.fontRendererObj.getStringWidth(s1), p_180791_3_ + 3, 16777215);

@@ -287,7 +287,7 @@ public class GameSettings {
     }
 
     public static String getKeyDisplayString(int key) {
-        return key < 0 ? I18n.format("key.mouseButton", new Object[]{Integer.valueOf(key + 101)}) : (key < 256 ? Keyboard.getKeyName(key) : String.format("%c", new Object[]{Character.valueOf((char) (key - 256))}).toUpperCase());
+        return key < 0 ? I18n.format("key.mouseButton", new Object[]{key + 101}) : (key < 256 ? Keyboard.getKeyName(key) : String.format("%c", new Object[]{(char) (key - 256)}).toUpperCase());
     }
 
     public static boolean isKeyDown(KeyBinding key) {
@@ -881,7 +881,7 @@ public class GameSettings {
 
                             for (SoundCategory soundcategory : SoundCategory.values()) {
                                 if (astring[0].equals("soundCategory_" + soundcategory.getCategoryName())) {
-                                    this.mapSoundLevels.put(soundcategory, Float.valueOf(this.parseFloat(astring[1])));
+                                    this.mapSoundLevels.put(soundcategory, this.parseFloat(astring[1]));
                                 }
                             }
 
@@ -1015,7 +1015,7 @@ public class GameSettings {
 
     public void setSoundLevel(SoundCategory sndCategory, float soundLevel) {
         this.mc.getSoundHandler().setSoundLevel(sndCategory, soundLevel);
-        this.mapSoundLevels.put(sndCategory, Float.valueOf(soundLevel));
+        this.mapSoundLevels.put(sndCategory, soundLevel);
     }
 
     public void sendSettingsToServer() {

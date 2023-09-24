@@ -55,9 +55,9 @@ public class CommandClearInventory extends CommandBase {
                 throw new CommandException("commands.clear.failure", new Object[]{entityplayermp.getName()});
             } else {
                 if (j == 0) {
-                    sender.addChatMessage(new ChatComponentTranslation("commands.clear.testing", new Object[]{entityplayermp.getName(), Integer.valueOf(k)}));
+                    sender.addChatMessage(new ChatComponentTranslation("commands.clear.testing", new Object[]{entityplayermp.getName(), k}));
                 } else {
-                    notifyOperators(sender, this, "commands.clear.success", new Object[]{entityplayermp.getName(), Integer.valueOf(k)});
+                    notifyOperators(sender, this, "commands.clear.success", new Object[]{entityplayermp.getName(), k});
                 }
             }
         }

@@ -56,9 +56,9 @@ public abstract class CommandBase implements ICommand {
         int i = parseInt(input);
 
         if (i < min) {
-            throw new NumberInvalidException("commands.generic.num.tooSmall", new Object[]{Integer.valueOf(i), Integer.valueOf(min)});
+            throw new NumberInvalidException("commands.generic.num.tooSmall", new Object[]{i, min});
         } else if (i > max) {
-            throw new NumberInvalidException("commands.generic.num.tooBig", new Object[]{Integer.valueOf(i), Integer.valueOf(max)});
+            throw new NumberInvalidException("commands.generic.num.tooBig", new Object[]{i, max});
         } else {
             return i;
         }
@@ -76,9 +76,9 @@ public abstract class CommandBase implements ICommand {
         long i = parseLong(input);
 
         if (i < min) {
-            throw new NumberInvalidException("commands.generic.num.tooSmall", new Object[]{Long.valueOf(i), Long.valueOf(min)});
+            throw new NumberInvalidException("commands.generic.num.tooSmall", new Object[]{i, min});
         } else if (i > max) {
-            throw new NumberInvalidException("commands.generic.num.tooBig", new Object[]{Long.valueOf(i), Long.valueOf(max)});
+            throw new NumberInvalidException("commands.generic.num.tooBig", new Object[]{i, max});
         } else {
             return i;
         }
@@ -111,9 +111,9 @@ public abstract class CommandBase implements ICommand {
         double d0 = parseDouble(input);
 
         if (d0 < min) {
-            throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[]{Double.valueOf(d0), Double.valueOf(min)});
+            throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[]{d0, min});
         } else if (d0 > max) {
-            throw new NumberInvalidException("commands.generic.double.tooBig", new Object[]{Double.valueOf(d0), Double.valueOf(max)});
+            throw new NumberInvalidException("commands.generic.double.tooBig", new Object[]{d0, max});
         } else {
             return d0;
         }
@@ -280,7 +280,7 @@ public abstract class CommandBase implements ICommand {
         boolean flag = p_175767_2_.startsWith("~");
 
         if (flag && Double.isNaN(p_175767_0_)) {
-            throw new NumberInvalidException("commands.generic.num.invalid", new Object[]{Double.valueOf(p_175767_0_)});
+            throw new NumberInvalidException("commands.generic.num.invalid", new Object[]{p_175767_0_});
         } else {
             double d0 = 0.0D;
 
@@ -300,11 +300,11 @@ public abstract class CommandBase implements ICommand {
 
             if (min != 0 || max != 0) {
                 if (d0 < (double) min) {
-                    throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[]{Double.valueOf(d0), Integer.valueOf(min)});
+                    throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[]{d0, min});
                 }
 
                 if (d0 > (double) max) {
-                    throw new NumberInvalidException("commands.generic.double.tooBig", new Object[]{Double.valueOf(d0), Integer.valueOf(max)});
+                    throw new NumberInvalidException("commands.generic.double.tooBig", new Object[]{d0, max});
                 }
             }
 
@@ -320,7 +320,7 @@ public abstract class CommandBase implements ICommand {
         boolean flag = input.startsWith("~");
 
         if (flag && Double.isNaN(base)) {
-            throw new NumberInvalidException("commands.generic.num.invalid", new Object[]{Double.valueOf(base)});
+            throw new NumberInvalidException("commands.generic.num.invalid", new Object[]{base});
         } else {
             double d0 = flag ? base : 0.0D;
 
@@ -340,11 +340,11 @@ public abstract class CommandBase implements ICommand {
 
             if (min != 0 || max != 0) {
                 if (d0 < (double) min) {
-                    throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[]{Double.valueOf(d0), Integer.valueOf(min)});
+                    throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[]{d0, min});
                 }
 
                 if (d0 > (double) max) {
-                    throw new NumberInvalidException("commands.generic.double.tooBig", new Object[]{Double.valueOf(d0), Integer.valueOf(max)});
+                    throw new NumberInvalidException("commands.generic.double.tooBig", new Object[]{d0, max});
                 }
             }
 

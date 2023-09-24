@@ -285,7 +285,7 @@ public class ConnectedParser {
                             IBlockState iblockstate1 = this.getStateFromMeta(block, l);
 
                             if (this.matchState(iblockstate1, map)) {
-                                list1.add(Integer.valueOf(l));
+                                list1.add(l);
                             }
                         } catch (IllegalArgumentException var18) {
                             ;
@@ -494,7 +494,7 @@ public class ConnectedParser {
 
                         if (k >= 0 && l >= 0 && k <= l) {
                             for (int i1 = k; i1 <= l; ++i1) {
-                                list.add(Integer.valueOf(i1));
+                                list.add(i1);
                             }
                         } else {
                             this.warn("Invalid interval: " + s + ", when parsing: " + str);
@@ -506,7 +506,7 @@ public class ConnectedParser {
                     if (j < 0) {
                         this.warn("Invalid number: " + s + ", when parsing: " + str);
                     } else {
-                        list.add(Integer.valueOf(j));
+                        list.add(j);
                     }
                 }
             }
@@ -869,7 +869,7 @@ public class ConnectedParser {
                 return null;
             }
 
-            set.add(Integer.valueOf(j));
+            set.add(j);
         }
 
         Integer[] ainteger = set.toArray(new Integer[set.size()]);
@@ -966,7 +966,7 @@ public class ConnectedParser {
                 if (j < 0) {
                     this.warn("Item has no ID: " + item + ", name: " + s);
                 } else {
-                    set.add(new Integer(j));
+                    set.add(j);
                 }
             }
         }
@@ -988,7 +988,7 @@ public class ConnectedParser {
             if (j < 0) {
                 this.warn("Entity not found: " + s);
             } else {
-                set.add(new Integer(j));
+                set.add(j);
             }
         }
 

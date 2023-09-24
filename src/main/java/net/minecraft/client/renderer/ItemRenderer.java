@@ -357,18 +357,18 @@ public class ItemRenderer {
             if (iblockstate.getBlock().getRenderType() != -1) {
                 Object object = Reflector.getFieldValue(Reflector.RenderBlockOverlayEvent_OverlayType_BLOCK);
 
-                if (!Reflector.callBoolean(Reflector.ForgeEventFactory_renderBlockOverlay, new Object[]{this.mc.thePlayer, Float.valueOf(partialTicks), object, iblockstate, blockpos})) {
+                if (!Reflector.callBoolean(Reflector.ForgeEventFactory_renderBlockOverlay, new Object[]{this.mc.thePlayer, partialTicks, object, iblockstate, blockpos})) {
                     this.renderBlockInHand(partialTicks, this.mc.getBlockRendererDispatcher().getBlockModelShapes().getTexture(iblockstate));
                 }
             }
         }
 
         if (!this.mc.thePlayer.isSpectator()) {
-            if (this.mc.thePlayer.isInsideOfMaterial(Material.water) && !Reflector.callBoolean(Reflector.ForgeEventFactory_renderWaterOverlay, new Object[]{this.mc.thePlayer, Float.valueOf(partialTicks)})) {
+            if (this.mc.thePlayer.isInsideOfMaterial(Material.water) && !Reflector.callBoolean(Reflector.ForgeEventFactory_renderWaterOverlay, new Object[]{this.mc.thePlayer, partialTicks})) {
                 this.renderWaterOverlayTexture(partialTicks);
             }
 
-            if (this.mc.thePlayer.isBurning() && !Reflector.callBoolean(Reflector.ForgeEventFactory_renderFireOverlay, new Object[]{this.mc.thePlayer, Float.valueOf(partialTicks)})) {
+            if (this.mc.thePlayer.isBurning() && !Reflector.callBoolean(Reflector.ForgeEventFactory_renderFireOverlay, new Object[]{this.mc.thePlayer, partialTicks})) {
                 this.renderFireInFirstPerson(partialTicks);
             }
         }
@@ -482,7 +482,7 @@ public class ItemRenderer {
         if (this.itemToRender != null && itemstack != null) {
             if (!this.itemToRender.getIsItemStackEqual(itemstack)) {
                 if (Reflector.ForgeItem_shouldCauseReequipAnimation.exists()) {
-                    boolean flag1 = Reflector.callBoolean(this.itemToRender.getItem(), Reflector.ForgeItem_shouldCauseReequipAnimation, new Object[]{this.itemToRender, itemstack, Boolean.valueOf(this.equippedItemSlot != entityplayer.inventory.currentItem)});
+                    boolean flag1 = Reflector.callBoolean(this.itemToRender.getItem(), Reflector.ForgeItem_shouldCauseReequipAnimation, new Object[]{this.itemToRender, itemstack, this.equippedItemSlot != entityplayer.inventory.currentItem});
 
                     if (!flag1) {
                         this.itemToRender = itemstack;

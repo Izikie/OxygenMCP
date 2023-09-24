@@ -76,7 +76,7 @@ public class Profiler {
 
                 this.profilingSection = this.profilingSection + name;
                 this.sectionList.add(this.profilingSection);
-                this.timestampList.add(Long.valueOf(System.nanoTime()));
+                this.timestampList.add(System.nanoTime());
             }
         }
     }
@@ -90,9 +90,9 @@ public class Profiler {
                 long k = i - j;
 
                 if (this.profilingMap.containsKey(this.profilingSection)) {
-                    this.profilingMap.put(this.profilingSection, Long.valueOf(this.profilingMap.get(this.profilingSection).longValue() + k));
+                    this.profilingMap.put(this.profilingSection, this.profilingMap.get(this.profilingSection).longValue() + k);
                 } else {
-                    this.profilingMap.put(this.profilingSection, Long.valueOf(k));
+                    this.profilingMap.put(this.profilingSection, k);
                 }
 
                 if (k > 100000000L) {
@@ -145,7 +145,7 @@ public class Profiler {
             }
 
             for (String s3 : this.profilingMap.keySet()) {
-                this.profilingMap.put(s3, Long.valueOf(this.profilingMap.get(s3).longValue() * 950L / 1000L));
+                this.profilingMap.put(s3, this.profilingMap.get(s3).longValue() * 950L / 1000L);
             }
 
             if ((float) k > f) {
