@@ -27,7 +27,7 @@ public enum EnumFacing implements IStringSerializable {
     private static final EnumFacing[] HORIZONTALS = new EnumFacing[4];
     private static final Map<String, EnumFacing> NAME_LOOKUP = Maps.newHashMap();
 
-    private EnumFacing(int indexIn, int oppositeIn, int horizontalIndexIn, String nameIn, EnumFacing.AxisDirection axisDirectionIn, EnumFacing.Axis axisIn, Vec3i directionVecIn) {
+    EnumFacing(int indexIn, int oppositeIn, int horizontalIndexIn, String nameIn, EnumFacing.AxisDirection axisDirectionIn, EnumFacing.Axis axisIn, Vec3i directionVecIn) {
         this.index = indexIn;
         this.horizontalIndex = horizontalIndexIn;
         this.opposite = oppositeIn;
@@ -250,7 +250,7 @@ public enum EnumFacing implements IStringSerializable {
         }
     }
 
-    public static enum Axis implements Predicate<EnumFacing>, IStringSerializable {
+    public enum Axis implements Predicate<EnumFacing>, IStringSerializable {
         X("x", EnumFacing.Plane.HORIZONTAL),
         Y("y", EnumFacing.Plane.VERTICAL),
         Z("z", EnumFacing.Plane.HORIZONTAL);
@@ -259,7 +259,7 @@ public enum EnumFacing implements IStringSerializable {
         private final String name;
         private final EnumFacing.Plane plane;
 
-        private Axis(String name, EnumFacing.Plane plane) {
+        Axis(String name, EnumFacing.Plane plane) {
             this.name = name;
             this.plane = plane;
         }
@@ -303,14 +303,14 @@ public enum EnumFacing implements IStringSerializable {
         }
     }
 
-    public static enum AxisDirection {
+    public enum AxisDirection {
         POSITIVE(1, "Towards positive"),
         NEGATIVE(-1, "Towards negative");
 
         private final int offset;
         private final String description;
 
-        private AxisDirection(int offset, String description) {
+        AxisDirection(int offset, String description) {
             this.offset = offset;
             this.description = description;
         }
@@ -324,7 +324,7 @@ public enum EnumFacing implements IStringSerializable {
         }
     }
 
-    public static enum Plane implements Predicate<EnumFacing>, Iterable<EnumFacing> {
+    public enum Plane implements Predicate<EnumFacing>, Iterable<EnumFacing> {
         HORIZONTAL,
         VERTICAL;
 

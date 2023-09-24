@@ -1248,7 +1248,7 @@ public class Chunk {
         this.inhabitedTime = newInhabitedTime;
     }
 
-    public static enum EnumCreateEntityType {
+    public enum EnumCreateEntityType {
         IMMEDIATE,
         QUEUED,
         CHECK;
