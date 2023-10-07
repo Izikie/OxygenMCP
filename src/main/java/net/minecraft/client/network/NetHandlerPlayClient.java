@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 import net.minecraft.block.Block;
 import net.minecraft.client.ClientBrandRetriever;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.WarningMessageType;
 import net.minecraft.client.audio.GuardianSound;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -978,6 +979,8 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         }
     }
 
+    private long cooldownStartTime = 0;
+
     public void handleChangeGameState(S2BPacketChangeGameState packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
         EntityPlayer entityplayer = this.gameController.thePlayer;
@@ -998,12 +1001,33 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         } else if (i == 3) {
             this.gameController.playerController.setGameType(WorldSettings.GameType.getByID(j));
         } else if (i == 4) {
-            this.gameController.displayGuiScreen(new GuiWinGame());
+            long currentTime = System.currentTimeMillis();
+            long elapsedTime = currentTime - cooldownStartTime;
+
+            if (elapsedTime >= 5000) {
+                this.gameController.displayGuiScreen(new GuiWinGame());
+                cooldownStartTime = currentTime;
+            } else {
+                this.gameController.WarningMessage(WarningMessageType.TROLL, "The server sent 'S2BPacketChangeGameState' with event 4 (Credit Screen) cooldown (" + elapsedTime + "/5000ms).");
+            }
         } else if (i == 5) {
-            this.gameController.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("WARNING: Server Might Be Attempting To Demo Screen You"));
+            String demoType = f + ": unknown";
+
+            if (f == 0) {
+                demoType = "0: Show Demo Screen";
+            } else if (f == 101 || f == 102 || f == 103) {
+                demoType = "101: Controls";
+            }
+
+            this.gameController.WarningMessage(WarningMessageType.TROLL,
+                    "The server sent 'S2BPacketChangeGameState' with event 5 (Demo) type of (" + demoType + ")" );
         } else if (i == 6) {
             this.clientWorldController.playSound(entityplayer.posX, entityplayer.posY + (double) entityplayer.getEyeHeight(), entityplayer.posZ, "random.successful_hit", 0.18F, 0.45F, false);
         } else if (i == 7) {
+            if (f >= 2 || f < 0) {
+                this.gameController.WarningMessage(WarningMessageType.CRASH,
+                        "The server sent 'S2BPacketChangeGameState' with event 7 (Rain Strength) at a value of (" + f + "/2.0).");
+            }
             this.clientWorldController.setRainStrength(f);
         } else if (i == 8) {
             this.clientWorldController.setThunderStrength(f);

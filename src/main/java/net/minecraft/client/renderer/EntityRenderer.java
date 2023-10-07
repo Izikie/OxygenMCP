@@ -1581,7 +1581,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     }
 
     private void addRainParticles() {
-        float f = this.mc.theWorld.getRainStrength(1.0F);
+        float f = MathHelper.clamp_float(this.mc.theWorld.getRainStrength(1.0F), 0.0F, 2.0F);
 
         if (!Config.isRainFancy()) {
             f /= 2.0F;
