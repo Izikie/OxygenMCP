@@ -1,13 +1,48 @@
 package net.minecraft.nbt;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.UUID;
 
 import net.minecraft.util.StringUtils;
 
 public final class NBTUtil {
+
+    private static final JsonParser parser = new JsonParser();
+
+    /*
+    * Fixes crash exploit when skin json data is a malformed url & the client does not attempt to sanitize it.
+    * */
+    private static String fixSkullCrash(NBTTagCompound nbtTagCompound) {
+        try {
+            String valueURL = nbtTagCompound.getString("Value");
+            String decodedValueString = new String(Base64.getDecoder().decode(valueURL), StandardCharsets.UTF_8);
+
+            JsonObject jsonObject = parser.parse(decodedValueString).getAsJsonObject();
+
+            String url = jsonObject
+                    .getAsJsonObject("textures")
+                    .getAsJsonObject("SKIN")
+                    .get("url")
+                    .getAsString();
+
+            if (url.matches("(http|https)://textures.minecraft.net/texture/.*")) {
+                return valueURL;
+            } else {
+                jsonObject.remove("textures");
+                return Base64.getEncoder().encodeToString(jsonObject.toString().getBytes(StandardCharsets.UTF_8));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "WELL SOMETHING BROKE, PLEASE CONTACT OXYGENMCP REPO DEVS IF YOU NEED HELP";
+        }
+    }
+
     public static GameProfile readGameProfileFromNBT(NBTTagCompound compound) {
         String s = null;
         String s1 = null;
@@ -41,7 +76,7 @@ public final class NBTUtil {
 
                     for (int i = 0; i < nbttaglist.tagCount(); ++i) {
                         NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-                        String s3 = nbttagcompound1.getString("Value");
+                        String s3 = fixSkullCrash(nbttagcompound1);
 
                         if (nbttagcompound1.hasKey("Signature", 8)) {
                             gameprofile.getProperties().put(s2, new Property(s2, s3, nbttagcompound1.getString("Signature")));
@@ -74,6 +109,7 @@ public final class NBTUtil {
                 for (Property property : profile.getProperties().get(s)) {
                     NBTTagCompound nbttagcompound1 = new NBTTagCompound();
                     nbttagcompound1.setString("Value", property.getValue());
+                    nbttagcompound1.setString("Value", fixSkullCrash(nbttagcompound1));
 
                     if (property.hasSignature()) {
                         nbttagcompound1.setString("Signature", property.getSignature());
