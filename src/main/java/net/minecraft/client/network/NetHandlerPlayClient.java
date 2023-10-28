@@ -3,6 +3,7 @@ package net.minecraft.client.network;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.mojang.authlib.GameProfile;
 import io.netty.buffer.Unpooled;
 
@@ -1269,7 +1270,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
                     public void onFailure(Throwable p_onFailure_1_) {
                         NetHandlerPlayClient.this.netManager.sendPacket(new C19PacketResourcePackStatus(s1, C19PacketResourcePackStatus.Action.FAILED_DOWNLOAD));
                     }
-                });
+                }, MoreExecutors.directExecutor());
             } else {
                 this.netManager.sendPacket(new C19PacketResourcePackStatus(s1, C19PacketResourcePackStatus.Action.FAILED_DOWNLOAD));
             }
@@ -1284,7 +1285,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
                     public void onFailure(Throwable p_onFailure_1_) {
                         NetHandlerPlayClient.this.netManager.sendPacket(new C19PacketResourcePackStatus(s1, C19PacketResourcePackStatus.Action.FAILED_DOWNLOAD));
                     }
-                });
+                }, MoreExecutors.directExecutor());
             } else if (this.gameController.getCurrentServerData() != null && this.gameController.getCurrentServerData().getResourceMode() != ServerData.ServerResourceMode.PROMPT) {
                 this.netManager.sendPacket(new C19PacketResourcePackStatus(s1, C19PacketResourcePackStatus.Action.DECLINED));
             } else {
@@ -1308,7 +1309,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
                                         public void onFailure(Throwable p_onFailure_1_) {
                                             NetHandlerPlayClient.this.netManager.sendPacket(new C19PacketResourcePackStatus(s1, C19PacketResourcePackStatus.Action.FAILED_DOWNLOAD));
                                         }
-                                    });
+                                    }, MoreExecutors.directExecutor());
                                 } else {
                                     if (NetHandlerPlayClient.this.gameController.getCurrentServerData() != null) {
                                         NetHandlerPlayClient.this.gameController.getCurrentServerData().setResourceMode(ServerData.ServerResourceMode.DISABLED);

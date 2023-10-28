@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CancellationException;
 
+import com.google.common.util.concurrent.MoreExecutors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
 import net.minecraft.crash.CrashReport;
@@ -147,7 +148,7 @@ public class ChunkRenderWorker implements Runnable {
                         Minecraft.getMinecraft().crashed(CrashReport.makeCrashReport(p_onFailure_1_, "Rendering chunk"));
                     }
                 }
-            });
+            }, MoreExecutors.directExecutor());
         }
     }
 

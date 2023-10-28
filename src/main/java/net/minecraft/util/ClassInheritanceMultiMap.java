@@ -113,7 +113,7 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
                 List<T> list = ClassInheritanceMultiMap.this.map.get(ClassInheritanceMultiMap.this.initializeClassLookup(clazz));
 
                 if (list == null) {
-                    return Iterators.emptyIterator();
+                    return Collections.emptyIterator();
                 } else {
                     Iterator<T> iterator = list.iterator();
                     return Iterators.filter(iterator, clazz);
@@ -123,7 +123,7 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
     }
 
     public Iterator<T> iterator() {
-        return (Iterator<T>) (this.values.isEmpty() ? Iterators.emptyIterator() : IteratorCache.getReadOnly(this.values));
+        return (Iterator<T>) (this.values.isEmpty() ? Collections.emptyIterator() : IteratorCache.getReadOnly(this.values));
     }
 
     public int size() {

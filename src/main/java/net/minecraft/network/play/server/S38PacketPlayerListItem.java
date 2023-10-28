@@ -1,6 +1,6 @@
 package net.minecraft.network.play.server;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -177,7 +177,10 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
     }
 
     public String toString() {
-        return Objects.toStringHelper(this).add("action", this.action).add("entries", this.players).toString();
+        return MoreObjects.toStringHelper(this)
+                .add("action", this.action)
+                .add("entries", this.players)
+                .toString();
     }
 
     public enum Action {
@@ -218,7 +221,12 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
         }
 
         public String toString() {
-            return Objects.toStringHelper(this).add("latency", this.ping).add("gameMode", this.gamemode).add("profile", this.profile).add("displayName", this.displayName == null ? null : IChatComponent.Serializer.componentToJson(this.displayName)).toString();
+            return MoreObjects.toStringHelper(this)
+                    .add("latency", this.ping)
+                    .add("gameMode", this.gamemode)
+                    .add("profile", this.profile)
+                    .add("displayName", this.displayName == null ? null : IChatComponent.Serializer.componentToJson(this.displayName))
+                    .toString();
         }
     }
 }

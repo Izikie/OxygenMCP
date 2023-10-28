@@ -27,7 +27,7 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL31;
 import org.lwjgl.opengl.GLContext;
 import oshi.SystemInfo;
-import oshi.hardware.Processor;
+import oshi.hardware.CentralProcessor;
 
 public class OpenGlHelper {
     public static boolean nvidia;
@@ -294,8 +294,10 @@ public class OpenGlHelper {
         }
 
         try {
-            Processor[] aprocessor = (new SystemInfo()).getHardware().getProcessors();
-            cpu = String.format("%dx %s", new Object[]{aprocessor.length, aprocessor[0]}).replaceAll("\\s+", " ");
+            SystemInfo systemInfo = new SystemInfo();
+            CentralProcessor processor = systemInfo.getHardware().getProcessor();
+            int logicalProcessorCount = processor.getLogicalProcessorCount();
+            cpu = String.format("%dx %s", logicalProcessorCount, processor).replaceAll("\\s+", " ");
         } catch (Throwable var5) {
             ;
         }

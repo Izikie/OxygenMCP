@@ -1,6 +1,6 @@
 package net.minecraft.block;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 import java.util.Random;
 
@@ -118,7 +118,7 @@ public class BlockTripWireHook extends Block {
                 flag3 = false;
             } else {
                 if (j == p_176260_6_) {
-                    iblockstate = Objects.firstNonNull(p_176260_7_, iblockstate);
+                    iblockstate = MoreObjects.firstNonNull(p_176260_7_, iblockstate);
                 }
 
                 boolean flag5 = !iblockstate.getValue(BlockTripWire.DISARMED);
