@@ -9,6 +9,10 @@ import io.netty.buffer.Unpooled;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +61,6 @@ import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.NpcMerchant;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
-import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -1251,7 +1254,40 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         this.gameController.theWorld.playSound(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getSoundName(), packetIn.getVolume(), packetIn.getPitch(), false);
     }
 
+    public void validateResourcePack(S48PacketResourcePackSend packet) {
+        try {
+            String url = packet.getURL();
+
+            // Check if the pack is correct protocol
+            if (!url.matches("(http|https|level)://+.*")) {
+                this.netManager.sendPacket(new C19PacketResourcePackStatus(packet.getHash(), C19PacketResourcePackStatus.Action.FAILED_DOWNLOAD));
+                this.gameController.WarningMessage(WarningMessageType.MALICIOUS, "Server attempted to send resourcepack with (" + url + ")");
+                throw new URISyntaxException(url, "Unsupported Protocol");
+            }
+
+            // Check for level:// protocol & validate path & check for path traversal
+            if (url.startsWith("level://")) {
+                url = URLDecoder.decode(url.substring("level://".length()), StandardCharsets.UTF_8.toString());
+
+                if (url.contains("..") || !url.endsWith("/resources.zip")) {
+                    EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+
+                    if (player != null) {
+                        this.gameController.WarningMessage(WarningMessageType.MALICIOUS, "Server attempted to traverse directory (" +  url + ")" );
+                    }
+
+                    throw new URISyntaxException(url, "Invalid level storage resource pack path");
+                }
+            }
+
+        } catch (URISyntaxException | UnsupportedEncodingException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public void handleResourcePack(S48PacketResourcePackSend packetIn) {
+        validateResourcePack(packetIn);
+
         final String s = packetIn.getURL();
         final String s1 = packetIn.getHash();
 
